@@ -104,6 +104,7 @@ const Avatar = forwardRef<HTMLDivElement, AvatarProps>(
       <Flex
         ref={ref}
         role="img"
+        aria-label="Avatar"
         position="relative"
         horizontal="center"
         vertical="center"

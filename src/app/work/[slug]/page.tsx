@@ -2,9 +2,6 @@ import { notFound } from "next/navigation";
 import { CustomMDX } from "@/components/mdx";
 import { getPosts } from "@/app/utils/utils";
 import { AvatarGroup, Button, Column, Flex, Heading, SmartImage, Text } from "@/once-ui/components";
-import { AutomationDashboard, TestSimulator, ComparativeCard } from "@/components"; // Import from index
-import { LiveTerminal } from "@/components/common/LiveTerminal";
-import { SapTerminal } from "@/components/common/SapTerminal";
 import { baseURL } from "@/app/resources";
 import { person } from "@/app/resources/content";
 import { formatDate } from "@/app/utils/formatDate";
@@ -15,6 +12,9 @@ interface WorkParams {
     slug: string;
   };
 }
+
+// Os estudos de caso são arquivos MDX conhecidos no build; qualquer outro slug é 404 de verdade.
+export const dynamicParams = false;
 
 export async function generateStaticParams(): Promise<{ slug: string }[]> {
   const posts = getPosts(["src", "app", "work", "projects"]);
@@ -117,21 +117,15 @@ export default function Project({ params }: WorkParams) {
         </Heading>
       </Column>
       
-      {params.slug === 'portfolio-automation' ? (
-        <LiveTerminal />
-      ) : params.slug === 'sap-automation' ? (
-        <SapTerminal />
-      ) : (
-        post.metadata.images.length > 0 && (
-            <SmartImage
-            priority
-            aspectRatio="16 / 9"
-            radius="m"
-            alt="image"
-            src={post.metadata.images[0]}
-            objectFit="contain"
-            />
-        )
+      {post.metadata.images.length > 0 && (
+        <SmartImage
+          priority
+          aspectRatio="16 / 9"
+          radius="m"
+          alt={post.metadata.title}
+          src={post.metadata.images[0]}
+          objectFit="contain"
+        />
       )}
       <Flex style={{ margin: "auto" }} as="article" maxWidth="xs" direction="column">
         <Flex gap="12" marginBottom="24" vertical="center">
@@ -140,7 +134,7 @@ export default function Project({ params }: WorkParams) {
             {post.metadata.publishedAt && formatDate(post.metadata.publishedAt)}
           </Text>
         </Flex>
-        <CustomMDX source={post.content} components={{ AutomationDashboard: AutomationDashboard as any, TestSimulator: TestSimulator as any, LiveTerminal: LiveTerminal as any, ComparativeCard: ComparativeCard as any }} />
+        <CustomMDX source={post.content} />
       </Flex>
       <ScrollToHash />
     </Column>

@@ -1,9 +1,9 @@
 ---
-title: "Automação e Acessibilidade do Portfólio"
-publishedAt: "2026-02-14"
-summary: "Como utilizei Agentes de IA, Playwright e Axe-core para transformar este portfólio em um exemplo vivo de Qualidade de Software."
+title: "Qualidade aplicada a este portfólio"
+publishedAt: "2026-09-23"
+summary: "Os bugs que encontrei no meu próprio site e a suíte de testes que roda no GitHub Actions para eles não voltarem."
 images:
-  - "/images/projects/portfolio-automation/after-fixes.png"
+  - "/images/projects/portfolio-automation/home-2026.png"
 team:
   - name: "Lucas Olivato"
     role: "QA Automation"
@@ -11,45 +11,39 @@ team:
     linkedIn: "https://www.linkedin.com/in/lucas-olivato/"
 ---
 
-## O Desafio
+## Por que testar um portfólio
 
-Este portfólio não é apenas uma vitrine de projetos passados, mas um **projeto ativo de engenharia de software**. O objetivo era garantir que ele fosse tecnicamente impecável, acessível a todos os usuários e otimizado para performance, utilizando as mesmas ferramentas que aplico em ambientes corporativos de alta escala.
+Um portfólio é o primeiro produto que um recrutador usa antes de falar comigo. Se ele tem link quebrado, página errada ou não funciona no celular, a mensagem é ruim, e para quem trabalha com qualidade é ainda pior.
 
-## A Solução: Engenharia Assistida por IA
+Por isso este site é tratado como qualquer outro produto: tem requisitos, tem testes e tem um pipeline que bloqueia regressões.
 
-Para alcançar esse nível de qualidade, implementei um pipeline de "Engenharia Assistida por Agentes", onde atuei como Arquiteto de Automação, guiando um agente de IA através de um roteiro rigoroso de diagnóstico e refatoração.
+## O que encontrei ao auditar o site
 
-### Stack Tecnológica
+Ao revisar a versão publicada, encontrei problemas reais — alguns invisíveis para quem só navega pela Home:
 
-- **Playwright:** Para automação de testes E2E e simulação de jornadas de usuário.
-- **Axe-core:** Para análise profunda e automatizada de acessibilidade.
-- **Next.js:** Framework React para performance e SEO.
-- **AI Agents:** Para aceleração do desenvolvimento e análise de código.
+- **Páginas de demonstração do template** continuavam publicadas em `/work/…` com o meu nome, incluindo membros de equipe fictícios.
+- **O domínio configurado era o da demo do template**, então SEO e prévias de link apontavam para o endereço errado.
+- **O `sitemap.xml` respondia 404**, porque procurava uma pasta de blog que não existe.
+- **A página 404 e os metadados de compartilhamento estavam em inglês.**
+- **A Home exibia um painel de "status em tempo real"** com números fixos. Parecia dado ao vivo, mas não era.
 
-<ComparativeCard />
+Todos foram corrigidos, e cada um virou um teste de regressão.
 
-## Simulador de Teste E2E
+## A suíte
 
-Não acredite apenas na minha palavra. Use o simulador abaixo para rodar uma verificação de qualidade em tempo real (simulada) e ver como nossos testes garantem a integridade da aplicação a cada passo.
+Os testes usam **Playwright** e rodam em dois perfis: desktop (Chrome) e celular (Pixel 7).
 
-<TestSimulator />
+- **Navegação:** toda página pública responde 200 e tem um único `h1`; o menu leva às páginas certas; uma rota inexistente responde 404 em português.
+- **Acessibilidade:** **axe-core** analisa cada página contra WCAG 2.1 A e AA, e o teste falha em qualquer violação séria ou crítica.
+- **Layout:** nenhuma página gera rolagem horizontal, e os botões principais têm área de toque de pelo menos 44 px.
+- **SEO:** `lang="pt-BR"`, descrição, Open Graph com o domínio real, `sitemap.xml` e `robots.txt` válidos.
+- **Links:** todos os links internos são coletados e verificados — nenhum pode responder erro.
+- **Regressões:** as páginas do template não podem voltar a existir, e a Home não pode voltar a simular dados ao vivo.
 
-## Implementação e Resultados
+## O pipeline
 
-O grande sucesso deste projeto foi trasformar verificações pontuais em um **Ecossistema de Qualidade Contínua**.
+A cada push e pull request, o **GitHub Actions** instala as dependências, gera o build de produção, sobe o site e roda a suíte completa nos dois perfis. Se algo falha, o relatório do Playwright fica disponível como artefato da execução.
 
-Ao invés de apenas corrigir bugs visualmente, implementamos **testes automatizados** que blindam a aplicação contra regressões. O **Simulador de Teste E2E** acima demonstra exatamente o fluxo que ocorre em nossos pipelines de CI/CD: navegação, injeção de agentes de acessibilidade (axe-core) e validação rigorosa de contrato.
+## O que aprendi
 
-O resultado é um "Dashboard Vivo" que não apenas informa, mas comprova a excelência técnica do projeto a cada visita.
-
-### Melhorias Implementadas
-
-1.  **Acessibilidade Universal:** Inclusão de landmarks (`<main>`), `aria-labels` em controles interativos e descrições para leitores de tela.
-2.  **Jornada do Usuário:** Implementação estratégica de Call-to-Actions (como o download do CV) baseada em dados de navegação.
-3.  **Performance:** Otimização de carregamento de fontes e imagens.
-
-## O Futuro: Dashboard Vivo
-
-Este projeto continua evoluindo. O próximo passo é a implementação de um **"Dashboard de Automação Vivo"**, que exibirá em tempo real o status dos testes que rodam a cada novo deploy, provando que a qualidade é uma entrega contínua, não um evento único.
-
-<LiveTerminal />
+Testar o próprio trabalho é mais difícil do que testar o dos outros: a gente sabe onde clicar e não tropeça nos mesmos lugares que um visitante. Escrever os testes a partir do que um recrutador precisa fazer — achar meu contato, abrir meu currículo, ler um projeto no celular — foi o que revelou os problemas.

@@ -54,6 +54,11 @@ export default function About() {
       items: [],
     },
     {
+      title: about.workflow.title,
+      display: about.workflow.display,
+      items: [],
+    },
+    {
       title: about.work.title,
       display: about.work.display,
       // Assuming company names are unique enough for this context (TOC)
@@ -121,7 +126,7 @@ export default function About() {
               flex={3}
               horizontal="center"
             >
-              <Avatar src={person.avatar} size="xl" />
+              <Avatar src={person.avatar} size="xl" aria-label={`Foto de ${person.name}`} />
             <Flex gap="8" vertical="center" className={styles.responsiveNowrap}>
               <Icon onBackground="accent-weak" name="globe" />
               {/* Displaying fixed location as requested */}
@@ -179,6 +184,25 @@ export default function About() {
             </Column>
           )}
 
+          {about.workflow.display && (
+            <>
+              <Heading as="h2" id={about.workflow.title} variant="display-strong-s" marginBottom="m">
+                {about.workflow.title}
+              </Heading>
+              <Column as="ol" fillWidth gap="12" marginBottom="40" paddingLeft="0" style={{ listStyle: "none" }}>
+                {about.workflow.steps.map((step, index) => (
+                  <Flex as="li" key={step.title} gap="16" vertical="start">
+                    <Text variant="label-default-s" onBackground="brand-weak" style={{ minWidth: 28, paddingTop: 3 }}>
+                      {String(index + 1).padStart(2, "0")}
+                    </Text>
+                    <Text variant="body-default-m">
+                      <strong>{step.title}</strong> — {step.description}
+                    </Text>
+                  </Flex>
+                ))}
+              </Column>
+            </>
+          )}
           {about.work.display && (
             <>
               <Heading as="h2" id={about.work.title} variant="display-strong-s" marginBottom="m">

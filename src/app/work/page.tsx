@@ -1,8 +1,7 @@
-import { getPosts } from "@/app/utils/utils";
-import { Column, RevealFx } from "@/once-ui/components";
-import { Projects } from "@/components/work/Projects";
 import { baseURL } from "@/app/resources";
 import { person, work } from "@/app/resources/content";
+import { ProjectRow } from "@/components/work/ProjectRow";
+import styles from "@/components/home/Home.module.scss";
 
 export async function generateMetadata() {
   const title = work.title;
@@ -12,37 +11,14 @@ export async function generateMetadata() {
   return {
     title,
     description,
-    openGraph: {
-      title,
-      description,
-      type: "website",
-      url: `https://${baseURL}/work/`,
-      images: [
-        {
-          url: ogImage,
-          alt: title,
-        },
-      ],
-    },
-    twitter: {
-      card: "summary_large_image",
-      title,
-      description,
-      images: [ogImage],
-    },
+    openGraph: { title, description, type: "website", url: `https://${baseURL}/work/`, images: [{ url: ogImage, alt: title }] },
+    twitter: { card: "summary_large_image", title, description, images: [ogImage] },
   };
 }
 
 export default function Work() {
-  // Note: getPosts reads from MDX files, which are not being used per previous correction.
-  // The Projects component now reads from content.js.
-  // This LD+JSON generation might be inconsistent if it relies on MDX metadata.
-  // For now, we'll keep getPosts here for the LD+JSON schema, but add keys.
-  // A better long-term solution might involve generating LD+JSON from content.js data.
-  let allProjectsFromMdx = getPosts(["src", "app", "work", "projects"]);
-
   return (
-    <Column maxWidth="m">
+    <div className={styles.page} style={{ gap: 88 }}>
       <script
         type="application/ld+json"
         suppressHydrationWarning
@@ -52,29 +28,38 @@ export default function Work() {
             "@type": "CollectionPage",
             headline: work.title,
             description: work.description,
-            url: `https://${baseURL}/projects`,
-            image: `${baseURL}/og?title=Design%20Projects`,
-            author: {
-              "@type": "Person",
-              name: person.name,
-            },
-            // Mapping over MDX posts for LD+JSON
-            hasPart: allProjectsFromMdx.map((project) => ({
-              // No React key needed inside JSON.stringify
-              "@type": "CreativeWork",
-              headline: project.metadata.title,
-              description: project.metadata.summary,
-              url: `https://${baseURL}/projects/${project.slug}`,
-              image: `${baseURL}/${project.metadata.image}`,
-            })),
+            url: `https://${baseURL}/work`,
+            author: { "@type": "Person", name: person.name },
+            hasPart: work.projects.map((project) => ({ "@type": "CreativeWork", headline: project.name, description: project.description })),
           }),
         }}
       />
-      {/* Projects component now reads from content.js */}
-      <RevealFx translateY="4" fillWidth>
-        <Projects />
-      </RevealFx>
-    </Column>
+      <div style={{ display: "flex", flexDirection: "column", gap: 16, paddingTop: 48 }}>
+        <span className={styles.eyebrow}>{"// projetos"}</span>
+        <h1 className={styles.headline} style={{ fontSize: "clamp(40px, 6vw, 64px)" }}>
+          {work.title}
+        </h1>
+        <p className={styles.subline}>{work.description}</p>
+      </div>
+
+      {work.groups.map((group) => {
+        const projects = work.projects.filter((project) => project.group === group.id);
+        return (
+          <section key={group.id} className={styles.section} aria-labelledby={`${group.id}-title`}>
+            <div style={{ display: "flex", flexDirection: "column", gap: 8 }}>
+              <h2 id={`${group.id}-title`} className={styles.h2}>
+                {group.title}
+              </h2>
+              <p className={styles.muted} style={{ margin: 0, fontSize: 16 }}>
+                {group.description}
+              </p>
+            </div>
+            {projects.map((project) => (
+              <ProjectRow key={project.slug} project={project} />
+            ))}
+          </section>
+        );
+      })}
+    </div>
   );
 }
-

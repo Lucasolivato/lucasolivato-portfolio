@@ -1,3 +1,11 @@
+/* Fontes da direção visual B: Geist e Geist Mono (pacote "geist"). */
+:root {
+  --font-primary: var(--font-geist-sans);
+  --font-secondary: var(--font-geist-sans);
+  --font-tertiary: var(--font-geist-sans);
+  --font-code: var(--font-geist-mono);
+}
+
 /* Efeito de transição entre páginas */
 .page-transition-enter {
   opacity: 0;

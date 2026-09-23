@@ -1,132 +1,124 @@
-import { InlineCode, Button } from "@/once-ui/components";
+import { Button } from "@/once-ui/components";
 
-// Informações Pessoais (Atualizadas com base no CV e conversa)
 const person = {
   firstName: "Lucas",
-  lastName: "Santos Olivato", // Nome completo atualizado
+  lastName: "Santos Olivato",
   get name() {
     return `${this.firstName} ${this.lastName}`;
   },
-  role: "Analista de Qualidade (QA)", // Cargo atualizado
-  avatar: "/images/avatar.jpg", // Manter avatar padrão
-  location: "America/Sao_Paulo", // Localização atualizada
-  languages: ["Português Nativo", "Inglês (Técnico)"], // Idiomas atualizados
-  cv: "/Curriculo_Lucas_Olivato.pdf", // Link para o CV
+  role: "QA Automation Engineer",
+  avatar: "/images/avatar.jpg",
+  location: "America/Sao_Paulo",
+  languages: ["Português nativo", "Inglês técnico"],
+  cv: "/Curriculo_Lucas_Olivato.pdf",
 };
 
-// Newsletter object updated to include title and description
-const newsletter = {
-  display: false, // Mantido como false
-  title: "Assine a Newsletter", // Added placeholder title
-  description: "Receba atualizações sobre meus projetos e artigos.", // Added placeholder description
-};
+const newsletter = { display: false, title: "Newsletter", description: "" };
 
-// Redes Sociais e Contatos (Atualizados - GitHub removido, mantendo nomes internos)
 const social = [
-  {
-    name: "GitHub",
-    icon: "github",
-    link: "https://github.com/LucasOlivato",
-  },
-  {
-    name: "LinkedIn",
-    icon: "linkedin",
-    link: "https://www.linkedin.com/in/lucas-olivato/",
-  },
-  {
-    name: "WhatsApp",
-    icon: "whatsapp",
-    link: "https://wa.me/5514991993618",
-  },
-  {
-    name: "Email",
-    icon: "email",
-    link: "mailto:lucasolivato@gmail.com",
-  },
+  { name: "GitHub", icon: "github", link: "https://github.com/LucasOlivato" },
+  { name: "LinkedIn", icon: "linkedin", link: "https://www.linkedin.com/in/lucas-olivato/" },
+  { name: "WhatsApp", icon: "whatsapp", link: "https://wa.me/5514991993618" },
+  { name: "Email", icon: "email", link: "mailto:lucasolivato@gmail.com" },
 ];
 
-// Página Home (Atualizada)
 const home = {
-  label: "Home",
-  title: `${person.name}'s Portfolio`,
-  description: `Portfolio website showcasing my work as an ${person.role}`,
-  headline: <>Especialista em Automação de Testes | QA Engineer focado em IA & Performance</>,
-  subline: (
-    <>
-      Elevo o padrão de produtos digitais com <strong className="font-strong">Engenharia de Qualidade</strong> moderna.<br/>
-      Utilizo <strong className="font-strong">Agentes de IA</strong> e <strong className="font-strong">Playwright</strong> para criar ecossistemas de testes que não apenas encontram bugs, mas aceleram o desenvolvimento e blindam a experiência do usuário.
-    </>
-  ),
+  label: "Início",
+  title: "Lucas Olivato — QA Automation Engineer",
+  description:
+    "Portfólio de Lucas Olivato, QA Automation Engineer com experiência em automação de testes, desenvolvimento de software, testes E2E, APIs e qualidade de produtos digitais.",
+  availability: "Aberto a novas oportunidades",
+  location: "Igaraçu do Tietê, SP",
+  headline: "Transformo requisitos em",
+  headlineAccent: "software confiável.",
+  subline:
+    "Automação de testes, qualidade de software e desenvolvimento web. Trabalho perto do código para encontrar riscos cedo, validar fluxos críticos e ajudar times a entregar com confiança.",
+  // Resultados reais, conferidos nos repositórios e relatórios de cada projeto.
+  report: [
+    { context: "analytics com IA · vitest", result: "1.643 passed", detail: "0 failed", tone: "pass" },
+    { context: "agente de IA · pytest", result: "229/229 passed", detail: "cobertura 90%", tone: "pass" },
+    { context: "agente de IA · e2e na AWS", result: "38/38 asserções", detail: "", tone: "pass" },
+    { context: "SAP · robot framework", result: "600+ pedidos", detail: "em 10 h", tone: "info" },
+  ],
+  stats: [
+    { value: "3 anos", label: "em qualidade de software" },
+    { value: "2 agentes", label: "de IA validados em produtos corporativos" },
+    { value: "4 produtos", label: "próprios, do código aos testes" },
+    { value: "Web · API · E2E", label: "camadas que automatizo" },
+  ],
+  featuredProjectSlugs: ["vorcq", "agente-ia-educacao", "assistente-ia-analytics", "sap-automation"],
+  tools: [
+    { title: "qualidade e automação", items: ["Playwright", "Cypress", "Robot Framework", "Selenium", "Postman", "Pytest", "Vitest", "axe"] },
+    { title: "desenvolvimento", items: ["TypeScript", "Python", "React", "Next.js", "Node.js"] },
+    { title: "dados e entrega", items: ["SQL", "PostgreSQL", "Supabase", "Docker", "AWS", "GitHub Actions"] },
+  ],
+  contact: {
+    title: "Vamos conversar?",
+    description: "Para vagas de QA, Quality Engineering ou times que precisam de alguém entre o teste e o código.",
+  },
 };
 
-// Página Sobre (Atualizada com base no CV e conversa)
 const about = {
-  label: "Sobre", // Label mantido
-  title: "Sobre Mim", // Título atualizado
-  description: `Conheça ${person.name}, ${person.role} apaixonado por tecnologia e qualidade.`, // Descrição atualizada
-  tableOfContent: {
-    display: true,
-    subItems: false,
-  },
-  avatar: {
-    display: true,
-  },
-  calendar: {
-    display: false,
-    link: "https://cal.com/lucas-olivato", // Placeholder link
-  },
+  label: "Sobre",
+  title: "Sobre mim",
+  description: `Conheça ${person.name}, ${person.role}, com foco em automação e qualidade de software.`,
+  tableOfContent: { display: true, subItems: false },
+  avatar: { display: true },
+  calendar: { display: false, link: "" },
   intro: {
     display: true,
-    title: "Introdução", // Título mantido
+    title: "Posicionamento profissional",
     description: (
       <>
-        Sou um{' '}<strong>QA Engineer</strong>{' '}em transição para a era da{' '}<strong>Engenharia Assistida por IA</strong>. <br />
-        Minha trajetória começou com testes manuais e evoluiu rapidamente para automação de alta complexidade. Hoje, meu foco não é apenas{' '}&quot;testar&quot;, mas arquitetar soluções de qualidade que se integram ao ciclo de vida do desenvolvimento (SDLC) desde o primeiro dia.<br />
-        Sou especialista em construir frameworks de automação resilientes (Playwright, Cypress) e em orquestrar agentes de inteligência artificial para otimizar processos de validação. Acredito que a qualidade do futuro é preditiva e integrada.
-        {/* Spacing fix applied */}
+        Sou <strong>QA Automation Engineer</strong> com experiência em automação de testes, validação de APIs e colaboração próxima com desenvolvimento e produto. Minha trajetória reúne testes manuais e automatizados, documentação técnica e construção de aplicações web. Hoje, mantenho a qualidade de software como foco principal e uso o desenvolvimento como diferencial para compreender melhor riscos, regras de negócio e decisões técnicas.
       </>
-    ), // Descrição atualizada
+    ),
+  },
+  workflow: {
+    display: true,
+    title: "Como eu trabalho",
+    steps: [
+      { title: "Entender", description: "O problema, o comportamento esperado e quem depende dele." },
+      { title: "Mapear riscos", description: "Regras de negócio, fluxos críticos e o que custa caro se quebrar." },
+      { title: "Definir cenários", description: "Casos de teste e as evidências que provam que funciona." },
+      { title: "Automatizar", description: "O que precisa de repetição e feedback rápido: UI, API e E2E." },
+      { title: "Acompanhar", description: "A entrega com o time, registrando aprendizados e regressões." },
+    ],
   },
   work: {
     display: true,
-    title: "Experiência Profissional", // Título mantido
+    title: "Experiência profissional",
     experiences: [
       {
         company: "NuageIT",
         timeframe: "2025 - Atual",
+        period: "2025 — hoje",
         role: "Analista de Qualidade de Software",
         achievements: [
           <>Implementação de estratégias de teste para aplicações web e APIs, utilizando Cypress, Playwright e Postman para automação de testes.</>,
-          <>Desenvolvimento de frameworks de teste escaláveis com integração contínua via GitHub Actions e Jenkins, garantindo qualidade em ambientes de entrega contínua.</>,
-          <>Elaboração de GMUDs (Guias de Mudança) e Handovers detalhados para implantações em produção, garantindo transições seguras e rastreabilidade das alterações.</>,
-          <>Colaboração direta com desenvolvedores e product owners para implementar práticas de Shift-Left Testing e BDD, melhorando a qualidade desde as fases iniciais do desenvolvimento.</>,
-          <>Criação e manutenção de documentação técnica de testes e gerenciamento de casos de teste no ClickUp, centralizando todo o fluxo de trabalho da equipe.</>,
-          <>Participação ativa em cerimônias ágeis e reuniões de planejamento, contribuindo com perspectivas de qualidade para decisões de produto.</>,
+          <>Desenvolvimento e testes de dois agentes de IA em projetos de clientes: um agente conversacional serverless na AWS, com guardrails e 229 testes unitários, e um assistente de analytics que responde apenas com dados reais, validado por 1.643 testes.</>,
+          <>Desenvolvimento de frameworks de teste escaláveis com integração contínua via GitHub Actions e Jenkins.</>,
+          <>Elaboração de GMUDs e handovers para implantações em produção, com foco em transições seguras e rastreabilidade.</>,
+          <>Colaboração com desenvolvimento e produto em práticas de Shift-Left Testing e BDD.</>,
+          <>Criação e manutenção de documentação técnica de testes e gerenciamento de casos de teste no ClickUp.</>,
         ],
         images: [],
       },
       {
         company: "Tecnologia Única",
         timeframe: "2023 - 2025 (1 ano e 6 meses)",
+        period: "2023 — 2025",
         role: "Analista de Garantia de Qualidade JR",
         achievements: [
-          <>Automação de testes funcionais e de API (Robot Framework, Selenium, Postman, Python) para sistemas críticos, validação de regras de negócio e fluxos de pedidos.</>,
-          <>Execução e análise de testes de carga e performance para garantir escalabilidade e estabilidade das soluções.</>,
-          <>Experiência em garantia de qualidade para SAP, incluindo análise de dados, automação de validações com SQL e colaboração na implementação de regras fiscais e integrações.</>,
-          <>Aplicação de práticas ágeis (TDD/BDD) e colaboração em pipelines de CI/CD.</>,
+          <>Automação de testes funcionais e de API com Robot Framework, Selenium, Postman e Python para sistemas críticos e fluxos de pedidos.</>,
+          <>Execução e análise de testes de carga e performance para avaliar escalabilidade e estabilidade.</>,
+          <>Atuação em qualidade para SAP, incluindo análise de dados, validações com SQL e colaboração em regras fiscais e integrações.</>,
           <>Elaboração de casos de teste, planos de teste e documentação técnica.</>,
           <>
-            <p>
-              <strong>Conquista:</strong> Automação de criação de pedidos via UI com Robot Framework (600+ pedidos em 10h), viabilizando testes de carga críticos.
-            </p>
+            <strong>Resultado comprovado:</strong> automação de criação de mais de 600 pedidos via UI em 10 horas para viabilizar testes de carga críticos.
             <br />
-            <Button
-              href="/work/sap-automation"
-              suffixIcon="arrowRight"
-              variant="tertiary"
-              size="s"
-            >
-              Ver Projeto
+            <Button href="/work/sap-automation" suffixIcon="arrowRight" variant="tertiary" size="s">
+              Ver estudo técnico
             </Button>
           </>,
         ],
@@ -136,203 +128,183 @@ const about = {
         company: "Zella Sistemas",
         timeframe: "2019 - 2020 (1 ano)",
         role: "Assistente Técnico Eletrônico",
-        achievements: [
-          <>Suporte técnico e manutenção de sistemas e equipamentos eletrônicos.</>,
-        ],
+        achievements: [<>Suporte técnico e manutenção de sistemas e equipamentos eletrônicos.</>],
         images: [],
       },
       {
         company: "L&L Tecnologia",
         timeframe: "2010 - 2018",
         role: "Instalador e Técnico de Sistemas de Energia Solar",
-        achievements: [
-          <>Planejamento de projetos, instalação e manutenção de sistemas de energia solar.</>,
-        ],
+        achievements: [<>Planejamento, instalação e manutenção de sistemas de energia solar.</>],
         images: [],
       },
     ],
   },
   studies: {
     display: true,
-    title: "Formação Acadêmica", // Título atualizado
+    title: "Formação acadêmica",
     institutions: [
-      {
-        name: "Etec Comendador João Rays",
-        description: <>Técnico em Desenvolvimento de Sistemas - 2024</>,
-      },
-      {
-        name: "Fatec Jaú",
-        description: <>Bacharelado em Gestão de Tecnologia da Informação - 2022</>,
-      },
-      {
-        name: "Etec Comendador João Rays",
-        description: <>Técnico em Informática – 2013</>,
-      },
+      { name: "Etec Comendador João Rays", description: <>Técnico em Desenvolvimento de Sistemas — 2024</> },
+      { name: "Fatec Jaú", description: <>Bacharelado em Gestão de Tecnologia da Informação — 2022</> },
+      { name: "Etec Comendador João Rays", description: <>Técnico em Informática — 2013</> },
     ],
   },
   technical: {
     display: true,
-    title: "Habilidades Técnicas", // Título mantido
+    title: "Competências técnicas",
     skills: [
       {
-        title: "IA & Automação Moderna",
-        description: <>Agentes Autônomos, LLMs para QA, Prompt Engineering, Engenharia de Prompt, RAG.</>,
+        title: "Qualidade e automação",
+        description: <>Playwright, Cypress, Robot Framework, Selenium, Postman, testes funcionais, testes de API, regressão, performance e acessibilidade.</>,
         images: [],
       },
       {
-        title: "Automação de Testes",
-        description: <>Robot Framework, Selenium WebDriver, Cypress, Playwright, Postman/Newman, Python (PyTest), JUnit, TestNG, RestAssured.</>,
+        title: "Desenvolvimento",
+        description: <>TypeScript, JavaScript, Python, React, Next.js, Node.js, HTML e CSS aplicados em aplicações web e automações.</>,
         images: [],
       },
       {
-        title: "Tipos de Teste",
-        description: <>Funcionais, Integração, API, UI, Performance (Carga/Stress), Regressão, Exploração, Segurança Básica, Usabilidade, BDD/TDD.</>,
+        title: "Dados, integrações e entrega",
+        description: <>SQL, SAP Business One, APIs REST, Supabase, PostgreSQL, Docker, GitHub Actions e Jenkins.</>,
         images: [],
       },
       {
-        title: "Ferramentas e Plataformas",
-        description: <>JIRA, Azure DevOps, ClickUp, Swagger, Grafana, Jenkins, GitHub Actions, SonarQube, Notion.</>,
-        images: [],
-      },
-      {
-        title: "Tecnologias",
-        description: <>SQL (SQL Server, SAP HANA, MySQL), SAP B1, Git, CI/CD, Docker, AWS/GCP/Azure (Serviços Básicos), APIs REST/SOAP.</>,
-        images: [],
-      },
-      {
-        title: "Linguagens",
-        description: <>Python, JavaScript, Java (Básico), HTML/CSS, SQL, Gherkin (Cucumber).</>,
-        images: [],
-      },
-      {
-        title: "Metodologias Ágeis",
-        description: <>Scrum, Kanban, SAFe (Básico), DevOps, Shift-Left Testing.</>,
-        images: [],
-      },
-      {
-        title: "Habilidades Complementares",
-        description: <>Documentação Técnica, GMUDs, Handovers, Relatórios de Teste, Comunicação com Stakeholders, Mentoria de Testes, Identificação e Relato de Bugs.</>,
+        title: "Práticas de trabalho",
+        description: <>BDD, Shift-Left Testing, CI/CD, documentação técnica, GMUDs, handovers, casos de teste e colaboração em times ágeis.</>,
         images: [],
       },
     ],
   },
 };
 
-// Página Contato (Mantendo nome interno 'blog', mas atualizando conteúdo visível)
 const blog = {
-  label: "Contato", // Label atualizado para Contato
-  title: "Entre em Contato", // Título atualizado
-  description: `Fale com ${person.name}. Envie uma mensagem ou conecte-se através dos canais abaixo. Telefone: 14-991993618`, // Descrição atualizada + Telefone
+  label: "Contato",
+  title: "Entre em contato",
+  description: `Converse com ${person.name} sobre qualidade de software, automação de testes e desenvolvimento.`,
 };
 
-// Página Projetos (Mantendo nome interno 'work', mas atualizando conteúdo visível e imagens)
 const work = {
-  label: "Projetos", // Label atualizado
-  title: "Meus Projetos", // Título atualizado
-  description: `Conheça alguns projetos desenvolvidos por ${person.name}.`, // Descrição atualizada
+  label: "Projetos",
+  title: "Projetos e estudos de caso",
+  description:
+    "Produtos que construí e sistemas que ajudei a validar — com os testes, as decisões e os resultados de cada um.",
+  groups: [
+    { id: "destaque", title: "Estudos de caso", description: "Qualidade, automação e desenvolvimento aplicados em produtos reais." },
+    { id: "proprios", title: "Outros produtos próprios", description: "Aplicações que desenvolvi do código aos testes." },
+    { id: "estudos", title: "Este portfólio", description: "O próprio site também é testado." },
+  ],
   projects: [
     {
-      name: "Portfólio Automation",
-      description: "Engenharia de Software de Alta Qualidade aplicada a este portfólio. Desenvolvimento assistido por Agentes de IA, com pipeline de testes E2E (Playwright) e validação de acessibilidade (Axe-core), garantindo um produto final robusto e inclusivo.",
-      link: "/work/portfolio-automation",
-      image: "/images/projects/portfolio-automation/after-fixes.png",
+      slug: "vorcq",
+      group: "destaque",
+      name: "VORCQ — gestão de locação de caçambas",
+      kind: "Produto próprio",
+      tone: "brand",
+      context: "Dev + QA",
+      description:
+        "Substituiu a planilha operacional de uma locadora por um sistema com rastreabilidade total: prazo em dias úteis, três perfis de acesso e quarentena de 180 dias antes de qualquer exclusão.",
+      highlights: ["RBAC com 3 perfis", "trilha de auditoria", "exclusão só lógica"],
+      tags: ["Next.js", "Supabase · RLS", "Vitest", "Playwright"],
+      caseStudy: "/work/vorcq",
     },
     {
-      name: "Automação de Pedidos (Tecnologia Única)",
-      description: "Script de automação (Robot Framework) para criação de pedidos via UI, gerando ~600 pedidos em 10h para viabilizar testes de carga de um novo microsserviço de logística e otimizar o tempo da equipe.", // Descrição da conquista do CV
-      link: "/work/sap-automation", // Link atualizado para a case study page
-      image: "/images/projects/robot_framework_automation.png", // Imagem ATUALIZADA (usando o ícone como placeholder)
+      slug: "agente-ia-educacao",
+      group: "destaque",
+      name: "Agente pedagógico com persona histórica",
+      kind: "Agente de IA",
+      tone: "ai",
+      context: "Cliente corporativo · educação",
+      description:
+        "Chat em tempo real para alunos e professores, com guardrails contra prompt injection e respostas que separam fato documentado de inferência.",
+      highlights: ["229/229 unitários", "38/38 E2E", "1º trecho em 2,15 s"],
+      tags: ["AWS Lambda", "Bedrock", "WebSocket", "Pytest"],
     },
     {
-      name: "PlantãoFarma App (TCC)",
-      description: "Co-desenvolvi um aplicativo mobile em React Native, com backend em Node.js e banco de dados MongoDB, para localizar farmácias de plantão próximas. O aplicativo simplifica a busca e integra-se com apps de mapa (Google Maps/Waze) para navegação direta, solucionando uma necessidade local e demonstrando habilidades em desenvolvimento full-stack mobile.", // Descrição atualizada do TCC
-      link: "https://github.com/Heloisa-Moraes/PlantaoFarma", // Link ATUALIZADO para o GitHub
-      image: "/images/projects/plantaofarma_info.jpg", // Imagem ATUALIZADA
+      slug: "assistente-ia-analytics",
+      group: "destaque",
+      name: "Assistente que só responde com dados reais",
+      kind: "Agente de IA",
+      tone: "ai",
+      context: "Projeto corporativo · analytics",
+      description:
+        "Responde em linguagem natural sem inventar números nem executar SQL arbitrário. Isolamento entre clientes provado por uma suíte adversarial.",
+      highlights: ["1.643 testes", "0 falhas", "multi-tenant"],
+      tags: ["Next.js", "PostgreSQL", "Tool-calling", "Docker"],
     },
-    // Adicionar outros projetos se houver
+    {
+      slug: "sap-automation",
+      group: "destaque",
+      name: "600 pedidos em SAP para destravar um teste de carga",
+      kind: "Automação",
+      tone: "brand",
+      context: "Tecnologia Única",
+      description:
+        "Com a API de pedidos instável, automatizei a criação pela interface e gerei a massa de dados que o teste de carga precisava.",
+      highlights: ["600+ pedidos", "em 10 horas"],
+      tags: ["Robot Framework", "Python", "SAP Business One"],
+      caseStudy: "/work/sap-automation",
+    },
+    {
+      slug: "clinicflow",
+      group: "proprios",
+      name: "ClinicFlow",
+      kind: "Produto próprio",
+      tone: "brand",
+      context: "SaaS",
+      description:
+        "CRM multi-tenant para clínicas médicas e odontológicas: agenda, pacientes, financeiro, atendimento via WhatsApp e automações com IA.",
+      highlights: ["isolamento via RLS", "fluxos E2E"],
+      tags: ["Next.js", "TypeScript", "Supabase", "Playwright"],
+    },
+    {
+      slug: "plantaofarma",
+      group: "proprios",
+      name: "PlantãoFarma",
+      kind: "App mobile",
+      tone: "brand",
+      context: "Projeto acadêmico",
+      description:
+        "Aplicativo para localizar farmácias de plantão próximas, com navegação direta pelo Google Maps ou Waze.",
+      highlights: ["React Native", "API em Node.js"],
+      tags: ["React Native", "Node.js", "MongoDB"],
+      externalLink: "https://github.com/Heloisa-Moraes/PlantaoFarma",
+    },
+    {
+      slug: "portfolio-automation",
+      group: "estudos",
+      name: "Qualidade aplicada a este portfólio",
+      kind: "Estudo técnico",
+      tone: "brand",
+      context: "Playwright + axe no CI",
+      description:
+        "Testes E2E, acessibilidade, SEO e layout mobile rodando no GitHub Actions a cada push.",
+      highlights: ["axe sem violações graves", "desktop e mobile"],
+      tags: ["Playwright", "axe-core", "GitHub Actions"],
+      caseStudy: "/work/portfolio-automation",
+    },
   ],
 };
 
-// Página Galeria (Mantida como no original para evitar alterações internas)
 const gallery = {
-  label: "Gallery",
-  title: "My photo gallery",
-  description: `A photo collection by ${person.name}`,
-  // Images from https://pexels.com
+  label: "Galeria",
+  title: "Galeria",
+  description: `Imagens de ${person.name}`,
   images: [
-    {
-      src: "/images/gallery/img-01.jpg",
-      alt: "image",
-      orientation: "portrait", // Corrigido para portrait conforme imagem
-    },
-    {
-      src: "/images/gallery/img-02.jpg",
-      alt: "image",
-      orientation: "landscape", // Corrigido para landscape conforme imagem
-    },
-    {
-      src: "/images/gallery/img-03.jpg",
-      alt: "image",
-      orientation: "portrait", // Corrigido para portrait conforme imagem
-    },
-    {
-      src: "/images/gallery/img-04.jpg",
-      alt: "image",
-      orientation: "landscape", // Corrigido para landscape conforme imagem
-    },
-    {
-      src: "/images/gallery/img-05.jpg",
-      alt: "image",
-      orientation: "landscape", // Corrigido para landscape conforme imagem
-    },
-    {
-      src: "/images/gallery/img-06.jpg",
-      alt: "image",
-      orientation: "portrait", // Corrigido para portrait conforme imagem
-    },
-    {
-      src: "/images/gallery/img-07.jpg",
-      alt: "image",
-      orientation: "landscape", // Corrigido para landscape conforme imagem
-    },
-    {
-      src: "/images/gallery/img-08.jpg",
-      alt: "image",
-      orientation: "portrait", // Corrigido para portrait conforme imagem
-    },
-    {
-      src: "/images/gallery/img-09.jpg",
-      alt: "image",
-      orientation: "landscape", // Corrigido para landscape conforme imagem
-    },
-    {
-      src: "/images/gallery/img-10.jpg",
-      alt: "image",
-      orientation: "landscape", // Corrigido para landscape conforme imagem
-    },
-    {
-      src: "/images/gallery/img-11.jpg",
-      alt: "image",
-      orientation: "portrait", // Corrigido para portrait conforme imagem
-    },
-    {
-      src: "/images/gallery/img-12.jpg",
-      alt: "image",
-      orientation: "landscape", // Corrigido para landscape conforme imagem
-    },
-    {
-      src: "/images/gallery/img-13.jpg",
-      alt: "image",
-      orientation: "landscape", // Corrigido para landscape conforme imagem
-    },
-    {
-      src: "/images/gallery/img-14.jpg",
-      alt: "image",
-      orientation: "landscape", // Corrigido para landscape conforme imagem
-    },
+    { src: "/images/gallery/img-01.jpg", alt: "Imagem de galeria", orientation: "portrait" },
+    { src: "/images/gallery/img-02.jpg", alt: "Imagem de galeria", orientation: "landscape" },
+    { src: "/images/gallery/img-03.jpg", alt: "Imagem de galeria", orientation: "portrait" },
+    { src: "/images/gallery/img-04.jpg", alt: "Imagem de galeria", orientation: "landscape" },
+    { src: "/images/gallery/img-05.jpg", alt: "Imagem de galeria", orientation: "landscape" },
+    { src: "/images/gallery/img-06.jpg", alt: "Imagem de galeria", orientation: "portrait" },
+    { src: "/images/gallery/img-07.jpg", alt: "Imagem de galeria", orientation: "landscape" },
+    { src: "/images/gallery/img-08.jpg", alt: "Imagem de galeria", orientation: "portrait" },
+    { src: "/images/gallery/img-09.jpg", alt: "Imagem de galeria", orientation: "landscape" },
+    { src: "/images/gallery/img-10.jpg", alt: "Imagem de galeria", orientation: "landscape" },
+    { src: "/images/gallery/img-11.jpg", alt: "Imagem de galeria", orientation: "portrait" },
+    { src: "/images/gallery/img-12.jpg", alt: "Imagem de galeria", orientation: "landscape" },
+    { src: "/images/gallery/img-13.jpg", alt: "Imagem de galeria", orientation: "landscape" },
+    { src: "/images/gallery/img-14.jpg", alt: "Imagem de galeria", orientation: "landscape" },
   ],
 };
 
-// Exportações mantidas como no original
 export { person, social, newsletter, home, about, blog, work, gallery };
-

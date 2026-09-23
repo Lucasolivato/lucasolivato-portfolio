@@ -1,46 +1,14 @@
 "use client";
 
+import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { useEffect, useState } from "react";
 
 import { Fade, Flex, Line, ToggleButton } from "@/once-ui/components";
 import styles from "@/components/Header.module.scss";
+import { Download } from "@/components/home/Icons";
 
-import { routes, display } from "@/app/resources";
-import { person, home, about, blog, work, gallery } from "@/app/resources/content";
-
-type TimeDisplayProps = {
-  timeZone: string;
-  locale?: string; // Optionally allow locale, defaulting to 'en-GB'
-};
-
-const TimeDisplay: React.FC<TimeDisplayProps> = ({ timeZone, locale = "en-GB" }) => {
-  const [currentTime, setCurrentTime] = useState("");
-
-  useEffect(() => {
-    const updateTime = () => {
-      const now = new Date();
-      const options: Intl.DateTimeFormatOptions = {
-        timeZone,
-        hour: "2-digit",
-        minute: "2-digit",
-        second: "2-digit",
-        hour12: false,
-      };
-      const timeString = new Intl.DateTimeFormat(locale, options).format(now);
-      setCurrentTime(timeString);
-    };
-
-    updateTime();
-    const intervalId = setInterval(updateTime, 1000);
-
-    return () => clearInterval(intervalId);
-  }, [timeZone, locale]);
-
-  return <>{currentTime}</>;
-};
-
-export default TimeDisplay;
+import { routes } from "@/app/resources";
+import { person, about, blog, work, gallery } from "@/app/resources/content";
 
 export const Header = () => {
   const pathname = usePathname() ?? "";
@@ -60,20 +28,10 @@ export const Header = () => {
       >
         <Flex paddingLeft="12" fillWidth vertical="center" textVariant="body-default-s">
           <Flex hide="s">
-            <span
-              role="img"
-              aria-label="Ladybug"
-              title="Bug Hunter!"
-              style={{
-                cursor: "pointer",
-                fontSize: "24px",
-                transition: "transform 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275)",
-              }}
-              onMouseEnter={(e) => (e.currentTarget.style.transform = "rotate(360deg) scale(1.2)")}
-              onMouseLeave={(e) => (e.currentTarget.style.transform = "rotate(0deg) scale(1)")}
-            >
-              🐞
-            </span>
+            <Link href="/" className={styles.brand} aria-label="Lucas Olivato, página inicial">
+              <span className={styles.brandMark} aria-hidden="true" />
+              lucas.olivato
+            </Link>
           </Flex>
         </Flex>
         <Flex fillWidth horizontal="center">
@@ -87,7 +45,7 @@ export const Header = () => {
           >
             <Flex gap="4" vertical="center" textVariant="body-default-s">
               {routes["/"] && (
-                <ToggleButton prefixIcon="home" href="/" selected={pathname === "/"} aria-label="Home" />
+                <ToggleButton prefixIcon="home" href="/" selected={pathname === "/"} aria-label="Início" />
               )}
               <Line vert maxHeight="24" />
               {routes["/about"] && (
@@ -146,7 +104,12 @@ export const Header = () => {
             textVariant="body-default-s"
             gap="20"
           >
-            <Flex hide="s">{display.time && <TimeDisplay timeZone={person.location} />}</Flex>
+            <Flex hide="s">
+              <a href={person.cv} download className={styles.cvButton}>
+                <Download />
+                Currículo
+              </a>
+            </Flex>
           </Flex>
         </Flex>
       </Flex>

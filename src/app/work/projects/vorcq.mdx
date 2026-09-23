@@ -1,0 +1,62 @@
+---
+title: "VORCQ — gestão de locação de caçambas"
+publishedAt: "2026-09-23"
+summary: "Como troquei a planilha operacional de uma locadora por um sistema com regras de negócio no banco, rastreabilidade total e quality gates em cada entrega."
+images: []
+team:
+  - name: "Lucas Olivato"
+    role: "Desenvolvimento e QA"
+    avatar: "/images/avatar.jpg"
+    linkedIn: "https://www.linkedin.com/in/lucas-olivato/"
+---
+
+## Contexto
+
+A **Locadora de Caçambas VORCQ**, que atende Barra Bonita e Igaraçu do Tietê (SP), controlava toda a operação em uma planilha do Excel: locações, entregas, trocas, retiradas, cobrança e o acerto diário do motorista.
+
+Planilha não guarda histórico, não impede erro de digitação e não diz quem alterou o quê. Quando uma cobrança sai errada, ninguém consegue explicar por quê.
+
+## O que eu construí
+
+Um sistema web, do banco de dados à interface, que substitui a planilha por completo:
+
+- **Locações e operação diária:** emissão com frete por cidade, mesa de comando de entregas, trocas e retiradas, confirmação física com fotos.
+- **Financeiro:** contas a receber, baixa por Pix ou dinheiro, acerto diário do motorista e convênios com medição mensal.
+- **Impressão A4:** romaneios de entrega, de retirada e de acerto, prontos para a operação.
+- **Administração:** trilha de auditoria com diff visual, gestão de usuários e relatório de alterações.
+
+## Onde estava o risco
+
+As regras que mais geram prejuízo quando falham foram tratadas como requisitos de qualidade, não só de funcionalidade:
+
+- **Prazo de 5 dias úteis**, calculado com o calendário de feriados. Depois disso, cobra-se a diária de sobreestadia. Um erro aqui vira cobrança indevida.
+- **Trocas** encerram a locação de origem e criam uma nova, vinculada, com prazo renovado. A operação é atômica: ou tudo acontece, ou nada.
+- **Nenhuma exclusão é definitiva.** Clientes, obras, caçambas, locações e pagamentos vão para uma quarentena de 180 dias e podem ser restaurados por um administrador.
+- **Três perfis de acesso** (administrador, atendente e motorista), cada um vendo e alterando só o que precisa.
+
+## Como garanti a qualidade
+
+A segurança mora no banco, não no navegador: **Row Level Security** no PostgreSQL, gatilhos de integridade e funções transacionais para as operações críticas. A identidade de quem cria ou altera um registro é extraída no servidor, e a chave de serviço nunca chega ao cliente.
+
+Uma tarefa só é considerada concluída quando **todos** os gates passam:
+
+1. **Testes automatizados** com Vitest e Testing Library, para regras de negócio, utilitários e componentes.
+2. **Suíte de integração SQL**, rodando as migrations em um PostgreSQL local em Docker, sem tocar em produção.
+3. **Testes E2E** com Playwright para os fluxos da operação, além de testes de impressão.
+4. **Verificação de tipos, lint e build de produção.**
+
+Tudo isso roda no **GitHub Actions** a cada alteração. A produção ainda tem **backup diário criptografado** por um workflow agendado.
+
+O trabalho é organizado em issues — *1 tarefa = 1 issue = 1 commit lógico* — o que mantém cada mudança rastreável.
+
+## Em números
+
+- **232 commits** em menos de um mês de desenvolvimento.
+- **104 issues** registradas no GitHub.
+- **184 arquivos de teste** cobrindo regras, componentes e fluxos.
+
+## Stack
+
+Next.js 15 (App Router e Server Actions) · React 19 · TypeScript estrito · Supabase (PostgreSQL, Auth e Storage) · Zod · Tailwind CSS · Vitest · Playwright · Sentry · Vercel.
+
+> O repositório é privado porque contém regras de negócio de um cliente real. Posso mostrar o código e a suíte de testes em uma conversa técnica.

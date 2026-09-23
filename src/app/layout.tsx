@@ -1,14 +1,15 @@
 import "@/once-ui/styles/index.scss";
 import "@/once-ui/tokens/index.scss";
 import "@/app/favicon.css";
+import "@/app/globals.css";
 
 import classNames from "classnames";
 
 import { Footer, Header, RouteGuard } from "@/components";
 import { baseURL, effects, style } from "@/app/resources";
 
-import { Inter } from "next/font/google";
-import { Source_Code_Pro } from "next/font/google";
+import { GeistSans } from "geist/font/sans";
+import { GeistMono } from "geist/font/mono";
 
 import { person, home } from "@/app/resources/content";
 import { Background, Column, Flex, ToastProvider } from "@/once-ui/components";
@@ -24,11 +25,11 @@ export async function generateMetadata() {
       apple: '/ladybug_favicon.svg',
     },
     openGraph: {
-      title: `${person.firstName}'s Portfolio`,
-      description: "Portfolio website showcasing my work.",
-      url: baseURL,
-      siteName: `${person.firstName}'s Portfolio`,
-      locale: "en_US",
+      title: home.title,
+      description: home.description,
+      url: `https://${baseURL}`,
+      siteName: person.name,
+      locale: "pt_BR",
       type: "website",
     },
     robots: {
@@ -45,12 +46,6 @@ export async function generateMetadata() {
   };
 }
 
-const primary = Inter({
-  variable: "--font-primary",
-  subsets: ["latin"],
-  display: "swap",
-});
-
 type FontConfig = {
   variable: string;
 };
@@ -64,12 +59,6 @@ const tertiary: FontConfig | undefined = undefined;
 /*
  */
 
-const code = Source_Code_Pro({
-  variable: "--font-code",
-  subsets: ["latin"],
-  display: "swap",
-});
-
 interface RootLayoutProps {
   children: React.ReactNode;
 }
@@ -78,7 +67,7 @@ export default async function RootLayout({ children }: RootLayoutProps) {
   return (
     <Flex
       as="html"
-      lang="en"
+      lang="pt-BR"
       background="page"
       data-neutral={style.neutral}
       data-brand={style.brand}
@@ -90,10 +79,10 @@ export default async function RootLayout({ children }: RootLayoutProps) {
       data-surface={style.surface}
       data-transition={style.transition}
       className={classNames(
-        primary.variable,
+        GeistSans.variable,
+        GeistMono.variable,
         secondary ? secondary.variable : "",
         tertiary ? tertiary.variable : "",
-        code.variable,
       )}
     >
       <ToastProvider>

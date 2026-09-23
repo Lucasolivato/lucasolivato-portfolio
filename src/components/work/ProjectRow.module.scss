@@ -1,0 +1,156 @@
+$surface: #111415;
+$line: #262d30;
+$text: #e8ecea;
+$muted: #a8b1ae;
+$label: #9aa3a0;
+$accent: #34d399;
+$ai: #f5b84b;
+
+.row {
+  display: grid;
+  grid-template-columns: repeat(12, minmax(0, 1fr));
+  column-gap: 32px;
+  padding: 32px;
+  border: 1px solid $line;
+  border-radius: 14px;
+  background: $surface;
+  color: $text;
+
+  @media (max-width: 768px) {
+    grid-template-columns: minmax(0, 1fr);
+    row-gap: 20px;
+    padding: 22px 18px;
+  }
+}
+
+.main {
+  grid-column: span 8;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+
+  @media (max-width: 768px) {
+    grid-column: auto;
+  }
+}
+
+.side {
+  grid-column: span 4;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 16px;
+  padding-left: 32px;
+  border-left: 1px solid $line;
+
+  @media (max-width: 768px) {
+    grid-column: auto;
+    padding-left: 0;
+    padding-top: 18px;
+    border-left: 0;
+    border-top: 1px solid $line;
+  }
+}
+
+.meta {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.kind {
+  font-family: var(--font-family-code);
+  font-size: 12px;
+  padding: 4px 10px;
+  border-radius: 6px;
+  background: #1a1f21;
+  border: 1px solid #1e4d3b;
+  color: $accent;
+}
+
+.kindAi {
+  border-color: #4d3b1a;
+  color: $ai;
+}
+
+.context {
+  font-family: var(--font-family-code);
+  font-size: 13px;
+  color: $label;
+}
+
+.title {
+  margin: 0;
+  font-size: 28px;
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  line-height: 1.2;
+
+  @media (max-width: 768px) {
+    font-size: 22px;
+  }
+}
+
+.description {
+  margin: 0;
+  font-size: 16px;
+  line-height: 1.6;
+  color: $muted;
+}
+
+.tags {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.tag {
+  font-family: var(--font-family-code);
+  font-size: 12px;
+  padding: 4px 10px;
+  border-radius: 6px;
+  background: #1a1f21;
+  color: #c9d1ce;
+  border: 1px solid $line;
+}
+
+.highlights {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  font-family: var(--font-family-code);
+  font-size: 14px;
+}
+
+.check {
+  color: $accent;
+  margin-right: 8px;
+}
+
+.links {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.row .link {
+  color: $accent;
+  font-size: 15px;
+  font-weight: 500;
+  text-decoration: none;
+  min-height: 44px;
+  display: inline-flex;
+  align-items: center;
+
+  &:hover {
+    text-decoration: underline;
+    text-underline-offset: 4px;
+  }
+}
