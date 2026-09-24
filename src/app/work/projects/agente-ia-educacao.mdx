@@ -1,0 +1,50 @@
+---
+title: "Agente pedagógico com persona histórica"
+publishedAt: "2026-09-06"
+summary: "Um agente de IA que conversa com alunos no papel de um artista histórico — sem fazer o trabalho por eles, sem inventar biografia e com guardrails contra prompt injection."
+images: []
+team:
+  - name: "Lucas Olivato"
+    role: "Desenvolvimento e qualidade"
+    avatar: "/images/avatar.jpg"
+    linkedIn: "https://www.linkedin.com/in/lucas-olivato/"
+---
+
+## Contexto
+
+Uma **instituição de ensino**, cliente da NuageIT, queria uma prova de conceito de IA generativa para as aulas de arte: um chat em que alunos e professores conversam com um **clone cognitivo de um grande mestre da pintura**, para estimular o pensamento crítico sobre a obra e a época dele.
+
+> O projeto é de um cliente, por isso não cito nomes nem mostro o código. Posso detalhar a arquitetura e os testes em uma conversa técnica.
+
+## Onde estava o risco
+
+Um agente que fala em nome de uma pessoa real, com alunos, tem riscos que vão além de "funcionar":
+
+- **Inventar biografia.** O modelo precisa respeitar os limites do que é documentado sobre a vida e a obra do artista.
+- **Virar atalho para o dever de casa.** A finalidade é pedagógica: o agente recusa resolver trabalhos acadêmicos pelo aluno.
+- **Prompt injection e temas sensíveis.** Um usuário pode tentar tirar o agente do papel ou das regras.
+- **Contas e dados de alunos.** Senhas, perfis e histórico de conversa precisam de controle de acesso de verdade.
+
+## O que eu construí
+
+- **Persona com transparência epistêmica:** cada resposta separa fato documentado, dedução coerente com a persona e contextualização histórica — o aluno sabe o que é fonte e o que é inferência.
+- **Separação de autoridade** entre o prompt de sistema e o histórico da conversa, mais **Amazon Bedrock Guardrails** para conter o domínio e bloquear prompt injection.
+- **Arquitetura serverless na AWS:** frontend em React, uma única conexão **WebSocket** pelo API Gateway, funções **Lambda** em Python e respostas em streaming, trecho a trecho.
+- **Autenticação e perfis:** JWT, senhas com PBKDF2, perfis de administrador e usuário, e um painel de gestão com todo o ciclo de vida das contas — criação, redefinição de senha, desativação e exclusão.
+- **Telemetria:** tokens, latência e um identificador de correlação gravados a cada resposta, com exportação e cálculo de percentis.
+
+## Como garanti a qualidade
+
+- **229/229 testes unitários** com Pytest e **90% de cobertura** no backend.
+- **38/38 asserções E2E** executadas contra o ambiente real na AWS, não contra mocks.
+- **100% de conformidade** nos cenários automatizados de persona e segurança dos guardrails.
+- Testes de carga e homologação funcional, com a latência medida a partir da própria telemetria.
+
+## Resultado
+
+- **Primeiro trecho da resposta:** 2,15 s em média e 4,36 s no P90 — a meta do projeto era ficar abaixo de 20 s.
+- **Resposta completa:** 4,85 s em média e 8,06 s no P90.
+
+## Stack
+
+React · TypeScript · Python · AWS Lambda · API Gateway WebSocket · Amazon Bedrock (com Guardrails) · DynamoDB · Pytest · Playwright.

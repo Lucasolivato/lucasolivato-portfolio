@@ -47,5 +47,14 @@ test("página Sobre mostra a progressão de QA para desenvolvimento na NuageIT",
   const roles = nuageit.getByRole("heading", { level: 4 });
   await expect(roles).toHaveCount(2);
   await expect(roles.first()).toContainText("Desenvolvedor");
-  await expect(roles.last()).toContainText("Analista de Qualidade");
+  await expect(roles.last()).toContainText("Analista de Garantia de Qualidade");
 });
+
+// Regressão: o MDX dos estudos de caso não interpreta tabelas em Markdown e as mostraria como texto cru.
+for (const route of routes.filter((route) => route.startsWith("/work/"))) {
+  test(`${route} não exibe Markdown cru`, async ({ page }) => {
+    await page.goto(route);
+    await expect(page.locator("article")).not.toContainText(/\|\s*-{3,}\s*\|/);
+    await expect(page.locator("article")).not.toContainText("**");
+  });
+}

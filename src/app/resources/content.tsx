@@ -78,7 +78,7 @@ const about = {
           Antes de TI, trabalhei com instalação de sistemas de energia solar e suporte técnico em eletrônica. Em 2023 entrei em qualidade de software na <strong>Tecnologia Única</strong>, automatizando testes de interface e API com Robot Framework e Python e validando sistemas SAP. Foi lá que automatizei a criação de mais de 600 pedidos em 10 horas para destravar um teste de carga.
         </p>
         <p>
-          Entrei na <strong>NuageIT</strong> em 2025 como Analista de Qualidade de Software. Ainda como QA, já trabalhava perto das iniciativas de IA da empresa e, em junho de 2026, recebi o convite para migrar para o desenvolvimento. Desde então, trabalho na criação de <strong>agentes de IA com LLMs</strong>: desenvolvi dois para clientes da empresa, validados por centenas de testes automatizados. Em paralelo, desenvolvo produtos próprios, como o <strong>VORCQ</strong>, sistema que substituiu a planilha operacional de uma locadora e roda com quality gates a cada entrega.
+          Entrei na <strong>NuageIT</strong> em junho de 2025 como Analista de Garantia de Qualidade. Ainda como QA, já trabalhava perto das iniciativas de IA da empresa e, em junho de 2026, recebi o convite para migrar para o desenvolvimento. Desde então, trabalho na criação de <strong>agentes de IA com LLMs</strong>: desenvolvi dois para clientes da empresa, validados por centenas de testes automatizados. Em paralelo, desenvolvo produtos próprios, como o <strong>VORCQ</strong>, sistema que substituiu a planilha operacional de uma locadora e roda com quality gates a cada entrega.
         </p>
         <p>
           Meu diferencial é levar o olhar de QA para dentro do desenvolvimento: pensar em risco, regra de negócio e regressão desde a primeira linha.
@@ -118,9 +118,9 @@ const about = {
       {
         company: "NuageIT",
         id: "NuageIT-qualidade",
-        timeframe: "2025 - Jun 2026",
-        period: "2025 — jun. 2026",
-        role: "Analista de Qualidade de Software",
+        timeframe: "Jun 2025 - Jun 2026",
+        period: "jun. 2025 — jun. 2026",
+        role: "Analista de Garantia de Qualidade Jr",
         achievements: [
           <>Implementação de estratégias de teste para aplicações web e APIs, utilizando Cypress, Playwright e Postman para automação de testes.</>,
           <>Desenvolvimento de frameworks de teste escaláveis com integração contínua via GitHub Actions e Jenkins.</>,
@@ -134,7 +134,7 @@ const about = {
         company: "Tecnologia Única",
         timeframe: "2023 - 2025 (1 ano e 6 meses)",
         period: "2023 — 2025",
-        role: "Analista de Garantia de Qualidade JR",
+        role: "Analista de Garantia de Qualidade Jr",
         achievements: [
           <>Automação de testes funcionais e de API com Robot Framework, Selenium, Postman e Python para sistemas críticos e fluxos de pedidos.</>,
           <>Execução e análise de testes de carga e performance para avaliar escalabilidade e estabilidade.</>,
@@ -247,6 +247,7 @@ const work = {
         "Chat em tempo real para alunos e professores, com guardrails contra prompt injection e respostas que separam fato documentado de inferência.",
       highlights: ["229/229 unitários", "38/38 E2E", "1º trecho em 2,15 s"],
       tags: ["AWS Lambda", "Bedrock", "WebSocket", "Pytest"],
+      caseStudy: "/work/agente-ia-educacao",
     },
     {
       slug: "assistente-ia-analytics",
@@ -259,6 +260,7 @@ const work = {
         "Responde em linguagem natural sem inventar números nem executar SQL arbitrário. Isolamento entre clientes provado por uma suíte adversarial.",
       highlights: ["1.643 testes", "0 falhas", "multi-tenant"],
       tags: ["Next.js", "PostgreSQL", "Tool-calling", "Docker"],
+      caseStudy: "/work/assistente-ia-analytics",
     },
     {
       slug: "sap-automation",

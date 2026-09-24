@@ -19,6 +19,8 @@ Este site é tratado como produto: tem requisitos, testes automatizados e um pip
 | [Contato](https://www.lucasolivato.com/contact) | WhatsApp, e-mail, LinkedIn e GitHub. |
 
 **Estudos de caso:**
+[Agente pedagógico com persona histórica](https://www.lucasolivato.com/work/agente-ia-educacao) ·
+[Assistente de IA que só responde com dados reais](https://www.lucasolivato.com/work/assistente-ia-analytics) ·
 [VORCQ — gestão de locação de caçambas](https://www.lucasolivato.com/work/vorcq) ·
 [600 pedidos em SAP para um teste de carga](https://www.lucasolivato.com/work/sap-automation) ·
 [Qualidade aplicada a este portfólio](https://www.lucasolivato.com/work/portfolio-automation)
@@ -27,7 +29,7 @@ Todo número exibido no site vem de um repositório ou relatório real. Nada sim
 
 ## Qualidade
 
-A suíte roda com **Playwright** em dois perfis — desktop (Chrome) e celular (Pixel 7) — a cada push, no GitHub Actions: **80 testes**.
+A suíte roda com **Playwright** em dois perfis — desktop (Chrome) e celular (Pixel 7) — a cada push, no GitHub Actions: **102 testes**.
 
 | Suíte | O que garante |
 |---|---|
@@ -86,3 +88,4 @@ A base de componentes vem do [Magic Portfolio / Once UI](https://github.com/once
 | Home | [`src/app/page.tsx`](src/app/page.tsx) e [`src/components/home/`](src/components/home) |
 | Linha de projeto (Home e Projetos) | [`src/components/work/ProjectRow.tsx`](src/components/work/ProjectRow.tsx) |
 | Testes | [`tests/e2e/`](tests/e2e) — páginas novas entram em [`routes.ts`](tests/e2e/routes.ts) |
+| Currículo em PDF | [`docs/curriculo/curriculo.html`](docs/curriculo/curriculo.html) → `npm run cv` gera [`public/Curriculo_Lucas_Olivato.pdf`](public/Curriculo_Lucas_Olivato.pdf) |

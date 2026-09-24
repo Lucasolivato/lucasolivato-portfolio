@@ -1,0 +1,47 @@
+---
+title: "Assistente de IA que só responde com dados reais"
+publishedAt: "2026-09-21"
+summary: "Uma plataforma de analytics com um assistente que responde em linguagem natural sem inventar números, sem executar SQL arbitrário e com isolamento entre clientes provado por uma suíte adversarial."
+images: []
+team:
+  - name: "Lucas Olivato"
+    role: "Desenvolvimento e qualidade"
+    avatar: "/images/avatar.jpg"
+    linkedIn: "https://www.linkedin.com/in/lucas-olivato/"
+---
+
+## Contexto
+
+Um cliente corporativo da NuageIT precisava entender como os times usavam uma **ferramenta corporativa de IA**: quem usa, quanto, com quais modelos, quanto isso custa e onde está o desperdício. Os dados chegavam em relatórios diários de atividade.
+
+Construí uma plataforma que ingere esses relatórios, organiza tudo em um banco relacional, mostra os indicadores em um dashboard e oferece um **assistente de IA** para perguntas em linguagem natural — do tipo "quem mais usou este mês?" ou "houve alguma anomalia na última semana?".
+
+> O projeto é de um cliente, por isso não cito nomes nem mostro o código. Posso detalhar a arquitetura e os testes em uma conversa técnica.
+
+## Onde estava o risco
+
+Um assistente de IA em cima de dados de consumo e custo tem um risco óbvio: **inventar números**. E, com vários clientes na mesma base, um segundo: **mostrar dados de um cliente para outro**.
+
+## O que eu construí
+
+- **Tool-calling em vez de SQL livre.** O modelo nunca escreve SQL. Ele só pode chamar **15 ferramentas somente-leitura** — métricas, rankings, comparação de períodos, distribuição, anomalias e eficiência de uso —, e cada uma consulta o banco por código testado.
+- **Fundamentação estrita.** O prompt de sistema exige responder apenas com o que as ferramentas retornaram, em português, sem expor e-mails e declarando quando não há dados.
+- **Motor de insights determinístico.** Anomalias e alertas vêm de regras puras e auditáveis, não da opinião do modelo.
+- **IA local e desacoplada.** O modelo roda em infraestrutura local (Ollama) por privacidade, atrás de uma porta que também aceita outros provedores — e uma prova de conceito roda a inferência no próprio navegador, via WebGPU.
+- **Multi-tenant com contexto assinado:** cada requisição carrega um contexto autenticado e criptograficamente assinado, com quatro perfis de acesso.
+- **Arquitetura modular** (hexagonal): ingestão, métricas, insights e IA como módulos separados sobre PostgreSQL, tudo em Docker.
+
+## Como garanti a qualidade
+
+- **1.643 testes automatizados aprovados**, com zero falhas, além de verificação de tipos, lint, build e build da imagem Docker como gates de cada entrega.
+- **Suíte adversarial de isolamento:** testes escritos para tentar vazar dados entre clientes — e que provam que isso não acontece.
+- **Auditoria técnica adversarial independente.** Os bloqueadores encontrados viraram um plano de remediação rastreado item a item, até o projeto subir do zero em um ambiente novo com a suíte inteira verde.
+- **Homologação com dados reais**, com critérios de aceite objetivos e registro de cada lacuna encontrada como issue.
+
+## Resultado
+
+O MVP roda com dados reais, responde perguntas sobre uso e custo sem inventar informação e tem o isolamento entre clientes provado por teste — não por promessa.
+
+## Stack
+
+Next.js · React · TypeScript · PostgreSQL · Drizzle ORM · Zod · Vercel AI SDK · Ollama · Docker · Vitest.

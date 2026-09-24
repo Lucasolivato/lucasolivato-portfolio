@@ -1,0 +1,202 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<title>Lucas Santos Olivato — Currículo</title>
+<meta name="author" content="Lucas Santos Olivato">
+<style>
+  @font-face { font-family: "Geist"; src: url("../../public/fonts/Geist-Regular.ttf"); font-weight: 400; }
+  @font-face { font-family: "Geist"; src: url("../../public/fonts/Geist-SemiBold.ttf"); font-weight: 600; }
+  @font-face { font-family: "Geist Mono"; src: url("../../public/fonts/GeistMono-Regular.ttf"); font-weight: 400; }
+
+  @page { size: A4; margin: 14mm 15mm 14mm 15mm; }
+
+  :root {
+    --ink: #111416;
+    --muted: #4a5250;
+    --line: #d9dedc;
+    --accent: #0f7a55;
+  }
+
+  * { box-sizing: border-box; }
+  /* Sem ligaduras: sistemas de triagem (ATS) precisam ler "fi" como duas letras. */
+  body { font-variant-ligatures: none; font-feature-settings: "liga" 0, "clig" 0, "dlig" 0; }
+  body { margin: 0; font-family: "Geist", Arial, sans-serif; font-size: 9.6pt; line-height: 1.45; color: var(--ink); }
+  a { color: inherit; text-decoration: none; }
+  p { margin: 0; }
+  ul { margin: 0; padding-left: 13px; }
+  li { margin: 0 0 2.5px; padding-left: 2px; }
+  li::marker { color: var(--accent); }
+  strong { font-weight: 600; }
+
+  header { display: flex; flex-direction: column; gap: 3px; padding-bottom: 10px; border-bottom: 1.5px solid var(--ink); }
+  h1 { margin: 0; font-size: 22pt; line-height: 1.1; font-weight: 600; letter-spacing: -0.02em; }
+  .headline { font-size: 11pt; font-weight: 600; color: var(--accent); }
+  .contact { font-family: "Geist Mono", monospace; font-size: 8.2pt; color: var(--muted); }
+
+  section { margin-top: 11px; }
+  h2 {
+    margin: 0 0 6px;
+    font-family: "Geist Mono", monospace;
+    font-size: 8.6pt;
+    font-weight: 400;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--accent);
+    border-bottom: 1px solid var(--line);
+    padding-bottom: 3px;
+  }
+
+  .job { margin-bottom: 9px; break-inside: avoid; }
+  .job-head { display: flex; justify-content: space-between; align-items: baseline; gap: 12px; }
+  .company { font-size: 10.6pt; font-weight: 600; }
+  .role { display: flex; justify-content: space-between; align-items: baseline; gap: 12px; margin: 3px 0 3px; }
+  .role-title { font-weight: 600; }
+  .period { font-family: "Geist Mono", monospace; font-size: 8.2pt; color: var(--muted); white-space: nowrap; }
+  .note { color: var(--muted); }
+
+  .project { margin-bottom: 6px; break-inside: avoid; }
+  /* Mantém o título da seção junto do primeiro item na quebra de página. */
+  .keep { break-inside: avoid; }
+  .project-title { font-weight: 600; }
+
+  .grid { display: grid; grid-template-columns: 1fr 1fr; column-gap: 18px; row-gap: 2px; }
+  .skill { margin-bottom: 4px; }
+  .skill strong { display: inline; }
+  .compact li { margin-bottom: 1.5px; }
+</style>
+</head>
+<body>
+
+<header>
+  <h1>Lucas Santos Olivato</h1>
+  <p class="headline">QA Automation Engineer &amp; Desenvolvedor de IA</p>
+  <p class="contact">Igaraçu do Tietê, SP · (14) 99199-3618 · lucasolivato@gmail.com</p>
+  <p class="contact">lucasolivato.com · linkedin.com/in/lucas-olivato · github.com/Lucasolivato</p>
+</header>
+
+<section>
+  <h2>Resumo</h2>
+  <p>
+    Profissional de tecnologia que atua dos dois lados do código: qualidade de software e desenvolvimento. Desde junho de 2026 sou
+    <strong>Desenvolvedor na NuageIT</strong>, criando <strong>agentes de IA com LLMs</strong> para clientes, depois de um ano como QA na mesma empresa.
+    Experiência em automação de testes de interface, API e E2E (Playwright, Cypress, Robot Framework, Selenium, Pytest, Vitest), CI/CD e aplicações
+    web com Next.js, TypeScript e Python. Levo o olhar de QA para o desenvolvimento: risco, regra de negócio e regressão desde a primeira linha.
+  </p>
+</section>
+
+<section>
+  <h2>Experiência profissional</h2>
+
+  <div class="job">
+    <div class="job-head"><span class="company">NuageIT</span><span class="period">06/2025 – atual</span></div>
+
+    <div class="role"><span class="role-title">Desenvolvedor · agentes de IA e LLMs</span><span class="period">06/2026 – atual</span></div>
+    <ul>
+      <li>Migrei da área de Qualidade para Desenvolvimento a convite da empresa, depois de atuar perto das iniciativas de IA ainda como QA.</li>
+      <li><strong>Agente conversacional pedagógico</strong> para um cliente do setor de educação: persona de um artista histórico com guardrails contra
+        prompt injection, arquitetura serverless na AWS (Lambda, API Gateway WebSocket, Amazon Bedrock, DynamoDB), autenticação JWT e perfis de acesso.
+        <strong>229/229 testes unitários</strong> (Pytest), <strong>90% de cobertura</strong> no backend, <strong>38/38 asserções E2E</strong> no ambiente AWS
+        e primeiro trecho da resposta em 2,15 s em média.</li>
+      <li><strong>Plataforma de analytics com assistente de IA</strong> para um cliente corporativo: respostas em linguagem natural fundamentadas apenas em
+        dados reais, via tool-calling (15 ferramentas somente-leitura) e sem SQL arbitrário; isolamento multi-tenant provado por suíte adversarial;
+        <strong>1.643 testes automatizados</strong> aprovados (Vitest). Next.js, TypeScript, PostgreSQL, Ollama e Docker.</li>
+    </ul>
+
+    <div class="role"><span class="role-title">Analista de Garantia de Qualidade Jr</span><span class="period">06/2025 – 06/2026</span></div>
+    <ul>
+      <li>Estratégias de teste para aplicações web e APIs, com automação em Cypress, Playwright e Postman.</li>
+      <li>Frameworks de teste com integração contínua via GitHub Actions e Jenkins.</li>
+      <li>GMUDs e handovers para implantações em produção, com transições seguras e rastreabilidade.</li>
+      <li>Shift-Left Testing e BDD junto a desenvolvedores e product owners; documentação e gestão de casos de teste no ClickUp.</li>
+    </ul>
+  </div>
+
+  <div class="job">
+    <div class="job-head"><span class="company">Tecnologia Única</span><span class="period">2023 – 2025</span></div>
+    <div class="role"><span class="role-title">Analista de Garantia de Qualidade Jr</span></div>
+    <ul>
+      <li>Automação de testes funcionais e de API (Robot Framework, Selenium, Postman, Python) para sistemas críticos e fluxos de pedidos.</li>
+      <li><strong>Automação da criação de ~600 pedidos em 10 horas</strong> pela interface do SAP Business One (Robot Framework e reconhecimento de imagem
+        com Sikuli/ImageHorizon), rodando sem supervisão para contornar uma API instável. A massa viabilizou os testes de carga de um novo microsserviço
+        de logística, que revelaram gargalos corrigidos antes do go-live.</li>
+      <li>QA para SAP: análise de dados, validações com SQL, regras fiscais e integrações; condução de reuniões de mapeamento de processos.</li>
+      <li>Testes de carga e performance, planos e casos de teste e documentação técnica (incluindo consultas e ajustes de estoque no SAP via Postman).</li>
+    </ul>
+  </div>
+
+  <div class="job">
+    <div class="job-head"><span class="company">L&amp;L Tecnologia</span><span class="period">2010 – 2018</span></div>
+    <div class="role"><span class="role-title">Técnico de Sistemas de Energia Solar</span></div>
+    <ul><li>Planejamento de projetos, instalação e manutenção de sistemas de energia solar.</li></ul>
+  </div>
+</section>
+
+<section>
+  <div class="keep">
+  <h2>Projetos próprios</h2>
+  <div class="project">
+    <p><span class="project-title">VORCQ — gestão de locação de caçambas</span> <span class="note">· cliente real, em produção</span></p>
+    <p>Substituiu a planilha operacional de uma locadora: regras de negócio no banco (Row Level Security, gatilhos e funções transacionais), trilha de
+      auditoria, três perfis de acesso e quarentena de 180 dias antes de qualquer exclusão. 184 arquivos de teste (Vitest, Testing Library, Playwright),
+      CI no GitHub Actions e backup diário criptografado. Next.js 15, TypeScript, Supabase (PostgreSQL).</p>
+  </div>
+  </div>
+  <div class="project">
+    <p><span class="project-title">ClinicFlow</span> <span class="note">· SaaS</span></p>
+    <p>CRM multi-tenant para clínicas médicas e odontológicas, com agenda, pacientes, financeiro, atendimento via WhatsApp e automações com IA.
+      Next.js, TypeScript, Supabase e Playwright.</p>
+  </div>
+  <div class="project">
+    <p><span class="project-title">lucasolivato.com</span> <span class="note">· portfólio</span></p>
+    <p>Tratado como produto: 102 testes E2E com Playwright e axe-core (acessibilidade WCAG 2.1 AA, SEO, links e layout mobile) no GitHub Actions a cada push.
+      Next.js 15 e React 19.</p>
+  </div>
+  <div class="project">
+    <p><span class="project-title">PlantãoFarma</span> <span class="note">· TCC</span></p>
+    <p>App mobile para localizar farmácias de plantão, com navegação pelo Google Maps e Waze. React Native, Node.js e MongoDB.</p>
+  </div>
+</section>
+
+<section>
+  <h2>Competências</h2>
+  <div class="grid">
+    <p class="skill"><strong>Qualidade e automação:</strong> Playwright, Cypress, Robot Framework, Selenium, Postman, Pytest, Vitest, Testing Library, axe-core.</p>
+    <p class="skill"><strong>Tipos de teste:</strong> funcionais, API, E2E, regressão, performance e carga, acessibilidade; BDD, TDD e Shift-Left.</p>
+    <p class="skill"><strong>IA aplicada:</strong> agentes com LLMs, tool-calling, guardrails, Amazon Bedrock, Vercel AI SDK, Ollama.</p>
+    <p class="skill"><strong>Desenvolvimento:</strong> TypeScript, JavaScript, Python, React, Next.js, Node.js, HTML e CSS.</p>
+    <p class="skill"><strong>Dados e nuvem:</strong> SQL (SQL Server, SAP HANA), PostgreSQL, Supabase, SAP Business One, AWS (Lambda, API Gateway, DynamoDB, Bedrock).</p>
+    <p class="skill"><strong>Entrega e processos:</strong> Git, GitHub Actions, Jenkins, Docker, Scrum, Kanban, GMUDs, handovers, ClickUp.</p>
+  </div>
+</section>
+
+<section>
+  <h2>Formação</h2>
+  <ul class="compact">
+    <li><strong>Técnico em Desenvolvimento de Sistemas</strong> · Etec Comendador João Rays · 2024</li>
+    <li><strong>Bacharelado em Gestão de Tecnologia da Informação</strong> · Fatec Jaú · 2022</li>
+    <li><strong>Técnico em Informática</strong> · Etec Comendador João Rays · 2013</li>
+  </ul>
+</section>
+
+<section>
+  <h2>Cursos</h2>
+  <ul class="compact">
+    <li>MultiCloud, DevOps &amp; IA Challenge (AWS, GCP, Azure, Terraform, K8s, Bedrock) · 2025</li>
+    <li>Automação de testes de API com Cypress · 2024</li>
+    <li>SAP Business One — básico ao avançado · 2023</li>
+    <li>Robot Discover (Qax Experience) · 2023</li>
+    <li>Testes funcionais com Selenium WebDriver (básico ao Grid) · 2023</li>
+    <li>Testes automatizados com Cypress em Angular (DIO) · 2023</li>
+    <li>Curso preparatório CTFL — ISTQB/BSTQB · 2022</li>
+    <li>Automação de testes com Robot Framework — básico · 2022</li>
+  </ul>
+</section>
+
+<section>
+  <h2>Idiomas</h2>
+  <p>Português nativo · Inglês técnico</p>
+</section>
+
+</body>
+</html>

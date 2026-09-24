@@ -7,6 +7,8 @@ export const routes = [
   "/work/vorcq",
   "/work/sap-automation",
   "/work/portfolio-automation",
+  "/work/agente-ia-educacao",
+  "/work/assistente-ia-analytics",
 ];
 
 export const productionHost = "www.lucasolivato.com";
