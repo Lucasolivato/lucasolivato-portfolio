@@ -120,8 +120,9 @@ const about = {
         id: "NuageIT-qualidade",
         timeframe: "Jun 2025 - Jun 2026",
         period: "jun. 2025 — jun. 2026",
-        role: "Analista de Garantia de Qualidade Jr",
+        role: "Analista de Garantia de Qualidade",
         achievements: [
+          <>Único QA do time, responsável sozinho por toda a frente de qualidade dos projetos.</>,
           <>Implementação de estratégias de teste para aplicações web e APIs, utilizando Cypress, Playwright e Postman para automação de testes.</>,
           <>Desenvolvimento de frameworks de teste escaláveis com integração contínua via GitHub Actions e Jenkins.</>,
           <>Elaboração de GMUDs e handovers para implantações em produção, com foco em transições seguras e rastreabilidade.</>,
