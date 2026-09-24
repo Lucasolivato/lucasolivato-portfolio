@@ -1,6 +1,5 @@
 import "@/once-ui/styles/index.scss";
 import "@/once-ui/tokens/index.scss";
-import "@/app/favicon.css";
 import "@/app/globals.css";
 
 import classNames from "classnames";
@@ -21,9 +20,11 @@ export async function generateMetadata() {
     title: home.title,
     description: home.description,
     icons: {
-      icon: '/ladybug_favicon.svg',
-      shortcut: '/ladybug_favicon.svg',
-      apple: '/ladybug_favicon.svg',
+      icon: [
+        { url: "/favicon.ico", sizes: "48x48" },
+        { url: "/favicon.svg", type: "image/svg+xml" },
+      ],
+      apple: "/apple-touch-icon.png",
     },
     openGraph: {
       title: home.title,

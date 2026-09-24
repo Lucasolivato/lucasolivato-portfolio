@@ -12,7 +12,7 @@ import styles from "@/components/home/Home.module.scss";
 export async function generateMetadata() {
   const title = home.title;
   const description = home.description;
-  const ogImage = `https://${baseURL}/og?title=${encodeURIComponent(title)}`;
+  const ogImage = `https://${baseURL}/og?title=${encodeURIComponent(`${home.headline} ${home.headlineAccent}`)}`;
 
   return {
     title,

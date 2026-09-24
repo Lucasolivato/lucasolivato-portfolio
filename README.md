@@ -27,7 +27,7 @@ Todo número exibido no site vem de um repositório ou relatório real. Nada sim
 
 ## Qualidade
 
-A suíte roda com **Playwright** em dois perfis — desktop (Chrome) e celular (Pixel 7) — a cada push, no GitHub Actions: **74 testes**.
+A suíte roda com **Playwright** em dois perfis — desktop (Chrome) e celular (Pixel 7) — a cada push, no GitHub Actions: **78 testes**.
 
 | Suíte | O que garante |
 |---|---|
@@ -35,7 +35,7 @@ A suíte roda com **Playwright** em dois perfis — desktop (Chrome) e celular (
 | [`navigation.spec.ts`](tests/e2e/navigation.spec.ts) | Toda página responde 200 com um único `h1`; o menu funciona; rotas inexistentes respondem 404 em português. |
 | [`accessibility.spec.ts`](tests/e2e/accessibility.spec.ts) | Nenhuma violação séria ou crítica do **axe-core** (WCAG 2.1 A e AA) em nenhuma página. |
 | [`layout.spec.ts`](tests/e2e/layout.spec.ts) | Nenhuma rolagem horizontal; botões principais com área de toque de 44 px ou mais; o fundo animado não bloqueia cliques nem aparece para leitores de tela. |
-| [`seo.spec.ts`](tests/e2e/seo.spec.ts) | `lang`, descrição e Open Graph com o domínio real; `sitemap.xml` e `robots.txt` válidos. |
+| [`seo.spec.ts`](tests/e2e/seo.spec.ts) | `lang`, descrição e Open Graph com o domínio real; `sitemap.xml`, `robots.txt`, favicon, manifest e imagem de compartilhamento válidos. |
 | [`links.spec.ts`](tests/e2e/links.spec.ts) | Nenhum link interno quebrado. |
 
 ### Bugs que os testes pegaram
@@ -73,7 +73,7 @@ Para testar o site publicado: `PLAYWRIGHT_BASE_URL=https://www.lucasolivato.com 
 
 ## Stack
 
-Next.js 14 (App Router) · React 18 · TypeScript · SCSS Modules · MDX para os estudos de caso · Geist · Playwright · axe-core · GitHub Actions · Vercel.
+Next.js 15 (App Router) · React 19 · TypeScript · SCSS Modules · MDX para os estudos de caso · Geist · Playwright · axe-core · GitHub Actions · Vercel.
 
 A base de componentes vem do [Magic Portfolio / Once UI](https://github.com/once-ui-system/magic-portfolio), sob a licença CC BY-NC 4.0 (veja [LICENSE](LICENSE)).
 
