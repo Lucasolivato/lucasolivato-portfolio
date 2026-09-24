@@ -145,7 +145,7 @@ export default function Home() {
           </div>
           <ol className={styles.timeline}>
             {recentJobs.map((job) => (
-              <li key={job.company} className={styles.timelineItem}>
+              <li key={`${job.company}-${job.period}`} className={styles.timelineItem}>
                 <span className={classNames(styles.label, styles.timelinePeriod)}>{job.period}</span>
                 <div className={styles.timelineBody}>
                   <span className={styles.strong}>{job.company}</span>

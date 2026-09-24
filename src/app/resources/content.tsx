@@ -42,7 +42,7 @@ const home = {
   ],
   stats: [
     { value: "3 anos", label: "em qualidade de software" },
-    { value: "2 agentes", label: "de IA validados em produtos corporativos" },
+    { value: "2 agentes", label: "de IA desenvolvidos para clientes" },
     { value: "4 produtos", label: "próprios, do código aos testes" },
     { value: "Web · API · E2E", label: "camadas que automatizo" },
   ],
@@ -80,8 +80,9 @@ const about = {
         destravar um teste de carga.
         <br />
         <br />
-        Na <strong>NuageIT</strong>, desde 2025, atuo cada vez mais no desenvolvimento: construí e testei dois agentes de IA
-        para clientes, validados por centenas de testes automatizados. Em paralelo, desenvolvo produtos próprios, como o{" "}
+        Entrei na <strong>NuageIT</strong> em 2025 como Analista de Qualidade de Software e, em 2026, migrei para a área de
+        desenvolvimento como <strong>Desenvolvedor de IA</strong>. Desde então, desenvolvi dois agentes de IA para clientes da
+        empresa, validados por centenas de testes automatizados. Em paralelo, desenvolvo produtos próprios, como o{" "}
         <strong>VORCQ</strong>, sistema que substituiu a planilha operacional de uma locadora e roda com quality gates a cada
         entrega.
         <br />
@@ -108,12 +109,26 @@ const about = {
     experiences: [
       {
         company: "NuageIT",
-        timeframe: "2025 - Atual",
-        period: "2025 — hoje",
+        id: "NuageIT-desenvolvimento",
+        timeframe: "2026 - Atual",
+        period: "2026 — hoje",
+        role: "Desenvolvedor de IA",
+        achievements: [
+          <>Migração da área de Qualidade para Desenvolvimento, levando para o código a mesma disciplina de testes automatizados e quality gates.</>,
+          <>Agente conversacional pedagógico para um cliente do setor de educação: persona histórica com guardrails contra prompt injection, arquitetura serverless na AWS (Lambda, API Gateway WebSocket e Bedrock), autenticação JWT e perfis de acesso. 229/229 testes unitários, 90% de cobertura no backend e 38/38 asserções E2E no ambiente AWS.</>,
+          <>Plataforma de analytics com assistente de IA para um cliente corporativo: respostas em linguagem natural fundamentadas apenas em dados reais do banco, via tool-calling e sem SQL arbitrário, com isolamento entre clientes validado por uma suíte adversarial. 1.643 testes aprovados.</>,
+          <>Stack: Next.js, React, TypeScript, Python, PostgreSQL, Docker e AWS.</>,
+        ],
+        images: [],
+      },
+      {
+        company: "NuageIT",
+        id: "NuageIT-qualidade",
+        timeframe: "2025 - 2026",
+        period: "2025 — 2026",
         role: "Analista de Qualidade de Software",
         achievements: [
           <>Implementação de estratégias de teste para aplicações web e APIs, utilizando Cypress, Playwright e Postman para automação de testes.</>,
-          <>Desenvolvimento e testes de dois agentes de IA em projetos de clientes: um agente conversacional serverless na AWS, com guardrails e 229 testes unitários, e um assistente de analytics que responde apenas com dados reais, validado por 1.643 testes.</>,
           <>Desenvolvimento de frameworks de teste escaláveis com integração contínua via GitHub Actions e Jenkins.</>,
           <>Elaboração de GMUDs e handovers para implantações em produção, com foco em transições seguras e rastreabilidade.</>,
           <>Colaboração com desenvolvimento e produto em práticas de Shift-Left Testing e BDD.</>,
