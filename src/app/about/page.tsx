@@ -225,7 +225,7 @@ export default function About() {
                     </Text>
                     <Column as="ul" gap="16">
                       {/* Using index for achievement keys as content might not be unique string */}
-                      {experience.achievements.map((achievement: JSX.Element, achIndex: number) => (
+                      {experience.achievements.map((achievement: React.JSX.Element, achIndex: number) => (
                         <Text
                           as="li"
                           variant="body-default-m"
