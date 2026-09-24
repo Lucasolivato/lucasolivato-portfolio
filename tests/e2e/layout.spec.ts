@@ -20,3 +20,10 @@ test("botões da Home têm área de toque de pelo menos 44px", async ({ page }) 
     expect(box?.height, name).toBeGreaterThanOrEqual(44);
   }
 });
+
+test("fundo decorativo não bloqueia cliques nem aparece para leitores de tela", async ({ page }) => {
+  await page.goto("/");
+  const background = page.getByTestId("ambient-background");
+  await expect(background).toHaveAttribute("aria-hidden", "true");
+  await expect(background).toHaveCSS("pointer-events", "none");
+});

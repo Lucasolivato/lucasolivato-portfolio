@@ -1,0 +1,66 @@
+$accent: #34d399;
+$grid: 24px;
+
+@mixin dot-grid($color) {
+  background-image: radial-gradient(circle, $color 1px, transparent 1.4px);
+  background-size: $grid $grid;
+  background-position: 0 0;
+}
+
+.root {
+  --cursor-x: 50vw;
+  --cursor-y: -50vh;
+
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.glow,
+.dots,
+.spotlight,
+.dotsLit {
+  position: absolute;
+  inset: 0;
+}
+
+// Luz ambiente no topo, atrás do título.
+.glow {
+  background:
+    radial-gradient(60% 55% at 50% -5%, rgba($accent, 0.22), transparent 72%),
+    radial-gradient(35% 35% at 88% 18%, rgba($accent, 0.07), transparent 70%);
+}
+
+// Textura: grade de pontos que some em direção às bordas.
+.dots {
+  @include dot-grid(rgba(232, 236, 234, 0.12));
+  mask-image: radial-gradient(ellipse 85% 75% at 50% 35%, #000 35%, transparent 100%);
+}
+
+// Luz que acompanha o cursor.
+.spotlight {
+  background: radial-gradient(
+    520px circle at var(--cursor-x) var(--cursor-y),
+    rgba($accent, 0.13),
+    transparent 65%
+  );
+  opacity: 0;
+  transition: opacity 0.5s ease;
+}
+
+// Pontos acesos em volta do cursor.
+.dotsLit {
+  @include dot-grid(rgba($accent, 0.6));
+  mask-image: radial-gradient(240px circle at var(--cursor-x) var(--cursor-y), #000, transparent 75%);
+  opacity: 0;
+  transition: opacity 0.5s ease;
+}
+
+.root[data-active="true"] {
+  .spotlight,
+  .dotsLit {
+    opacity: 1;
+  }
+}

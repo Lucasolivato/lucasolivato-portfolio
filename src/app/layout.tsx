@@ -6,6 +6,7 @@ import "@/app/globals.css";
 import classNames from "classnames";
 
 import { Footer, Header, RouteGuard } from "@/components";
+import { AmbientBackground } from "@/components/AmbientBackground";
 import { baseURL, effects, style } from "@/app/resources";
 
 import { GeistSans } from "geist/font/sans";
@@ -134,6 +135,7 @@ export default async function RootLayout({ children }: RootLayoutProps) {
               opacity: effects.lines.opacity as any,
             }}
           />
+          <AmbientBackground />
           <Flex fillWidth minHeight="16"></Flex>
           <Header />
           <Flex

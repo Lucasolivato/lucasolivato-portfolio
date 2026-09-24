@@ -1,6 +1,6 @@
 # lucasolivato.com
 
-[![CI](https://github.com/Lucasolivato/magic-portfolio-for-next-js/actions/workflows/ci.yml/badge.svg)](https://github.com/Lucasolivato/magic-portfolio-for-next-js/actions/workflows/ci.yml)
+[![CI](https://github.com/Lucasolivato/lucasolivato-portfolio/actions/workflows/ci.yml/badge.svg)](https://github.com/Lucasolivato/lucasolivato-portfolio/actions/workflows/ci.yml)
 [![Site](https://img.shields.io/badge/no%20ar-lucasolivato.com-34D399?labelColor=0C0E0F)](https://www.lucasolivato.com)
 
 Portfólio de **Lucas Santos Olivato**, QA Automation Engineer que escreve os testes e também constrói o que eles validam.
@@ -27,14 +27,14 @@ Todo número exibido no site vem de um repositório ou relatório real. Nada sim
 
 ## Qualidade
 
-A suíte roda com **Playwright** em dois perfis — desktop (Chrome) e celular (Pixel 7) — a cada push, no GitHub Actions: **72 testes**.
+A suíte roda com **Playwright** em dois perfis — desktop (Chrome) e celular (Pixel 7) — a cada push, no GitHub Actions: **74 testes**.
 
 | Suíte | O que garante |
 |---|---|
 | [`home.spec.ts`](tests/e2e/home.spec.ts) | Nome, cargo e proposta de valor na primeira dobra; currículo em PDF acessível; WhatsApp; estudos de caso em destaque. |
 | [`navigation.spec.ts`](tests/e2e/navigation.spec.ts) | Toda página responde 200 com um único `h1`; o menu funciona; rotas inexistentes respondem 404 em português. |
 | [`accessibility.spec.ts`](tests/e2e/accessibility.spec.ts) | Nenhuma violação séria ou crítica do **axe-core** (WCAG 2.1 A e AA) em nenhuma página. |
-| [`layout.spec.ts`](tests/e2e/layout.spec.ts) | Nenhuma rolagem horizontal; botões principais com área de toque de 44 px ou mais. |
+| [`layout.spec.ts`](tests/e2e/layout.spec.ts) | Nenhuma rolagem horizontal; botões principais com área de toque de 44 px ou mais; o fundo animado não bloqueia cliques nem aparece para leitores de tela. |
 | [`seo.spec.ts`](tests/e2e/seo.spec.ts) | `lang`, descrição e Open Graph com o domínio real; `sitemap.xml` e `robots.txt` válidos. |
 | [`links.spec.ts`](tests/e2e/links.spec.ts) | Nenhum link interno quebrado. |
 
