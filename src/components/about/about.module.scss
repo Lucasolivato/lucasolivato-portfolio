@@ -1,36 +1,400 @@
-.hover {
-    transition: var(--transition-micro-medium);
+// Página Sobre na direção visual B, com os mesmos tokens da Home.
+$surface: #111415;
+$line: #262d30;
+$text: #e8ecea;
+$muted: #a8b1ae;
+$label: #9aa3a0;
+$accent: #34d399;
+$accent-ink: #06140e;
 
-    &:hover {
-        transform: translateX(var(--static-space-4));
-    }
+.page {
+  width: 100%;
+  max-width: 1160px;
+  margin: 0 auto;
+  padding: 48px 24px 0;
+  box-sizing: border-box;
+  display: grid;
+  grid-template-columns: 300px minmax(0, 1fr);
+  gap: 72px;
+  color: $text;
+
+  @media (max-width: 1024px) {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 56px;
+    padding: 16px 16px 0;
+  }
+}
+
+.label {
+  font-family: var(--font-family-code);
+  font-size: 13px;
+  color: $label;
+}
+
+.eyebrow {
+  font-family: var(--font-family-code);
+  font-size: 13px;
+  color: $accent;
+}
+
+// ---------- Coluna do perfil ----------
+.profile {
+  position: sticky;
+  top: 96px;
+  align-self: start;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+
+  @media (max-width: 1024px) {
+    position: static;
+  }
 }
 
 .avatar {
-    position: sticky;
-    height: fit-content;
-    top: var(--static-space-64);
+  width: 128px;
+  height: 128px;
+  border-radius: 24px;
+  object-fit: cover;
+  border: 2px solid $line;
 }
 
-.responsiveNowrap {
-    white-space: normal;
-    word-break: break-word;
+.name {
+  margin: 0;
+  font-size: 34px;
+  line-height: 1.1;
+  letter-spacing: -0.03em;
+  font-weight: 600;
 }
 
-@media (--s) {
-    .avatar {
-        top: auto;
-    }
+.role {
+  margin: 0;
+  font-size: 16px;
+  line-height: 1.5;
+  color: $accent;
+  font-weight: 500;
+}
 
-    .textAlign {
-        text-align: center;
-    }
+.facts {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
 
-    .blockAlign {
-        align-self: center;
-    }
+.actions {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
 
-    .responsiveNowrap {
-        white-space: nowrap;
+.actionRow {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 8px;
+}
+
+.page .button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  min-height: 44px;
+  padding: 0 16px;
+  border-radius: 10px;
+  font-size: 14px;
+  font-weight: 600;
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+.page .buttonAccent {
+  background: $accent;
+  color: $accent-ink;
+
+  &:hover {
+    background: #6ee7b7;
+  }
+}
+
+.page .buttonGhost {
+  border: 1px solid #333b3e;
+  color: $text;
+  font-weight: 500;
+
+  &:hover {
+    border-color: $label;
+  }
+}
+
+.nav {
+  display: flex;
+  flex-direction: column;
+  padding-top: 8px;
+  border-top: 1px solid $line;
+
+  @media (max-width: 1024px) {
+    display: none;
+  }
+}
+
+.page .navLink {
+  display: flex;
+  align-items: center;
+  min-height: 36px;
+  font-family: var(--font-family-code);
+  font-size: 13px;
+  color: $label;
+  text-decoration: none;
+
+  &:hover {
+    color: $accent;
+  }
+}
+
+// ---------- Conteúdo ----------
+.content {
+  display: flex;
+  flex-direction: column;
+  gap: 96px;
+  min-width: 0;
+
+  @media (max-width: 768px) {
+    gap: 72px;
+  }
+}
+
+.section {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  scroll-margin-top: 96px;
+}
+
+.h2 {
+  margin: 0;
+  font-size: 36px;
+  line-height: 1.15;
+  letter-spacing: -0.03em;
+  font-weight: 600;
+
+  @media (max-width: 768px) {
+    font-size: 28px;
+  }
+}
+
+.bio {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  font-size: 18px;
+  line-height: 1.7;
+  color: $muted;
+
+  strong {
+    color: $text;
+    font-weight: 600;
+  }
+
+  p {
+    margin: 0;
+  }
+}
+
+// Como eu trabalho
+.steps {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+
+  @media (max-width: 768px) {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+.step {
+  padding: 20px;
+  border: 1px solid $line;
+  border-radius: 12px;
+  background: $surface;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.stepTitle {
+  font-weight: 600;
+  font-size: 17px;
+}
+
+.muted {
+  font-size: 15px;
+  line-height: 1.6;
+  color: $muted;
+}
+
+// Experiência
+.jobs {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.job {
+  padding: 28px;
+  border: 1px solid $line;
+  border-radius: 14px;
+  background: $surface;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+
+  @media (max-width: 768px) {
+    padding: 20px 16px;
+  }
+}
+
+.company {
+  margin: 0;
+  font-size: 22px;
+  font-weight: 600;
+  letter-spacing: -0.02em;
+}
+
+.roles {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+}
+
+// Cada cargo é um ponto da linha do tempo dentro do cartão da empresa.
+.roleItem {
+  position: relative;
+  padding: 0 0 24px 28px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+
+  &::before {
+    content: "";
+    position: absolute;
+    left: 4px;
+    top: 8px;
+    width: 10px;
+    height: 10px;
+    border-radius: 3px;
+    background: $line;
+  }
+
+  &::after {
+    content: "";
+    position: absolute;
+    left: 8px;
+    top: 24px;
+    bottom: 0;
+    width: 2px;
+    background: $line;
+  }
+
+  &:first-child::before {
+    background: $accent;
+  }
+
+  &:last-child {
+    padding-bottom: 0;
+
+    &::after {
+      display: none;
     }
+  }
+}
+
+.roleHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.roleTitle {
+  margin: 0;
+  font-size: 17px;
+  font-weight: 600;
+}
+
+.achievements {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  font-size: 15px;
+  line-height: 1.6;
+  color: $muted;
+
+  li {
+    position: relative;
+    padding-left: 18px;
+
+    &::before {
+      content: "";
+      position: absolute;
+      left: 0;
+      top: 0.65em;
+      width: 6px;
+      height: 6px;
+      border-radius: 2px;
+      background: $accent;
+    }
+  }
+
+  strong {
+    color: $text;
+  }
+
+  a {
+    color: $accent;
+  }
+}
+
+// Formação e competências
+.grid {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+
+  @media (max-width: 768px) {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+.card {
+  padding: 20px;
+  border: 1px solid $line;
+  border-radius: 12px;
+  background: $surface;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.cardTitle {
+  margin: 0;
+  font-size: 17px;
+  font-weight: 600;
 }

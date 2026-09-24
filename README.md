@@ -27,7 +27,7 @@ Todo número exibido no site vem de um repositório ou relatório real. Nada sim
 
 ## Qualidade
 
-A suíte roda com **Playwright** em dois perfis — desktop (Chrome) e celular (Pixel 7) — a cada push, no GitHub Actions: **78 testes**.
+A suíte roda com **Playwright** em dois perfis — desktop (Chrome) e celular (Pixel 7) — a cada push, no GitHub Actions: **80 testes**.
 
 | Suíte | O que garante |
 |---|---|

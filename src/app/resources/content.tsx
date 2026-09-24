@@ -1,4 +1,4 @@
-import { Button } from "@/once-ui/components";
+import Link from "next/link";
 
 const person = {
   firstName: "Lucas",
@@ -50,6 +50,7 @@ const home = {
   tools: [
     { title: "qualidade e automação", items: ["Playwright", "Cypress", "Robot Framework", "Selenium", "Postman", "Pytest", "Vitest", "axe"] },
     { title: "desenvolvimento", items: ["TypeScript", "Python", "React", "Next.js", "Node.js"] },
+    { title: "ia aplicada", items: ["LLMs", "Tool-calling", "Guardrails", "Amazon Bedrock", "Vercel AI SDK", "Ollama"] },
     { title: "dados e entrega", items: ["SQL", "PostgreSQL", "Supabase", "Docker", "AWS", "GitHub Actions"] },
   ],
   contact: {
@@ -70,26 +71,18 @@ const about = {
     title: "Quem sou",
     description: (
       <>
-        Sou <strong>QA Automation Engineer e desenvolvedor de IA</strong>: trabalho dos dois lados do código, escrevendo os
-        testes e também construindo o que eles validam.
-        <br />
-        <br />
-        Antes de TI, trabalhei com instalação de sistemas de energia solar e suporte técnico em eletrônica. Em 2023 entrei
-        em qualidade de software na <strong>Tecnologia Única</strong>, automatizando testes de interface e API com Robot
-        Framework e Python e validando sistemas SAP. Foi lá que automatizei a criação de mais de 600 pedidos em 10 horas para
-        destravar um teste de carga.
-        <br />
-        <br />
-        Entrei na <strong>NuageIT</strong> em 2025 como Analista de Qualidade de Software. Ainda como QA, já trabalhava perto
-        das iniciativas de IA da empresa e, em junho de 2026, recebi o convite para migrar para o desenvolvimento. Desde
-        então, trabalho na criação de <strong>agentes de IA com LLMs</strong>: desenvolvi dois para clientes da empresa,
-        validados por centenas de testes automatizados. Em paralelo, desenvolvo produtos próprios, como o{" "}
-        <strong>VORCQ</strong>, sistema que substituiu a planilha operacional de uma locadora e roda com quality gates a cada
-        entrega.
-        <br />
-        <br />
-        Meu diferencial é levar o olhar de QA para dentro do desenvolvimento: pensar em risco, regra de negócio e regressão
-        desde a primeira linha.
+        <p>
+          Sou <strong>QA Automation Engineer e desenvolvedor de IA</strong>: trabalho dos dois lados do código, escrevendo os testes e também construindo o que eles validam.
+        </p>
+        <p>
+          Antes de TI, trabalhei com instalação de sistemas de energia solar e suporte técnico em eletrônica. Em 2023 entrei em qualidade de software na <strong>Tecnologia Única</strong>, automatizando testes de interface e API com Robot Framework e Python e validando sistemas SAP. Foi lá que automatizei a criação de mais de 600 pedidos em 10 horas para destravar um teste de carga.
+        </p>
+        <p>
+          Entrei na <strong>NuageIT</strong> em 2025 como Analista de Qualidade de Software. Ainda como QA, já trabalhava perto das iniciativas de IA da empresa e, em junho de 2026, recebi o convite para migrar para o desenvolvimento. Desde então, trabalho na criação de <strong>agentes de IA com LLMs</strong>: desenvolvi dois para clientes da empresa, validados por centenas de testes automatizados. Em paralelo, desenvolvo produtos próprios, como o <strong>VORCQ</strong>, sistema que substituiu a planilha operacional de uma locadora e roda com quality gates a cada entrega.
+        </p>
+        <p>
+          Meu diferencial é levar o olhar de QA para dentro do desenvolvimento: pensar em risco, regra de negócio e regressão desde a primeira linha.
+        </p>
       </>
     ),
   },
@@ -150,9 +143,7 @@ const about = {
           <>
             <strong>Resultado comprovado:</strong> automação de criação de mais de 600 pedidos via UI em 10 horas para viabilizar testes de carga críticos.
             <br />
-            <Button href="/work/sap-automation" suffixIcon="arrowRight" variant="tertiary" size="s">
-              Ver estudo técnico
-            </Button>
+            <Link href="/work/sap-automation">Ver estudo técnico →</Link>
           </>,
         ],
         images: [],
@@ -194,6 +185,11 @@ const about = {
       {
         title: "Desenvolvimento",
         description: <>TypeScript, JavaScript, Python, React, Next.js, Node.js, HTML e CSS aplicados em aplicações web e automações.</>,
+        images: [],
+      },
+      {
+        title: "IA aplicada",
+        description: <>Agentes com LLMs, tool-calling, guardrails contra prompt injection, Amazon Bedrock, Vercel AI SDK e Ollama.</>,
         images: [],
       },
       {

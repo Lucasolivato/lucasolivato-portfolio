@@ -40,3 +40,12 @@ for (const slug of [
     expect(response.status()).toBe(404);
   });
 }
+
+test("página Sobre mostra a progressão de QA para desenvolvimento na NuageIT", async ({ page }) => {
+  await page.goto("/about");
+  const nuageit = page.getByRole("listitem").filter({ has: page.getByRole("heading", { name: "NuageIT", level: 3 }) });
+  const roles = nuageit.getByRole("heading", { level: 4 });
+  await expect(roles).toHaveCount(2);
+  await expect(roles.first()).toContainText("Desenvolvedor");
+  await expect(roles.last()).toContainText("Analista de Qualidade");
+});

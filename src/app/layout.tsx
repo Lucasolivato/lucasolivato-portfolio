@@ -20,10 +20,8 @@ export async function generateMetadata() {
     title: home.title,
     description: home.description,
     icons: {
-      icon: [
-        { url: "/favicon.ico", sizes: "48x48" },
-        { url: "/favicon.svg", type: "image/svg+xml" },
-      ],
+      // O /favicon.ico já é declarado pelo Next a partir de src/app/favicon.ico.
+      icon: [{ url: "/favicon.svg", type: "image/svg+xml" }],
       apple: "/apple-touch-icon.png",
     },
     openGraph: {

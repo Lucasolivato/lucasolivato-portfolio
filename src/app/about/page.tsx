@@ -1,21 +1,10 @@
-import React from "react"; // Import React for Fragment
-import {
-  Avatar,
-  Button,
-  Column,
-  Flex,
-  Heading,
-  Icon,
-  IconButton,
-  RevealFx,
-  SmartImage,
-  Tag,
-  Text,
-} from "@/once-ui/components";
+import Image from "next/image";
+import classNames from "classnames";
+
 import { baseURL } from "@/app/resources";
-import TableOfContents from "@/components/about/TableOfContents";
+import { about, home, person, social } from "@/app/resources/content";
+import { Download } from "@/components/home/Icons";
 import styles from "@/components/about/about.module.scss";
-import { person, about, social } from "@/app/resources/content";
 
 export async function generateMetadata() {
   const title = about.title;
@@ -25,60 +14,37 @@ export async function generateMetadata() {
   return {
     title,
     description,
-    openGraph: {
-      title,
-      description,
-      type: "website",
-      url: `https://${baseURL}/about`,
-      images: [
-        {
-          url: ogImage,
-          alt: title,
-        },
-      ],
-    },
-    twitter: {
-      card: "summary_large_image",
-      title,
-      description,
-      images: [ogImage],
-    },
+    openGraph: { title, description, type: "website", url: `https://${baseURL}/about`, images: [{ url: ogImage, alt: title }] },
+    twitter: { card: "summary_large_image", title, description, images: [ogImage] },
   };
 }
 
+const linkOf = (name: string) => social.find((item) => item.name === name)?.link ?? "";
+
+type Experience = (typeof about.work.experiences)[number];
+
+// Cargos consecutivos na mesma empresa viram um único cartão com a progressão.
+const groupByCompany = (experiences: readonly Experience[]) =>
+  experiences.reduce<{ company: string; roles: Experience[] }[]>((groups, experience) => {
+    const last = groups[groups.length - 1];
+    if (last && last.company === experience.company) last.roles.push(experience);
+    else groups.push({ company: experience.company, roles: [experience] });
+    return groups;
+  }, []);
+
+const sections = [
+  { id: "quem-sou", title: about.intro.title },
+  { id: "como-eu-trabalho", title: about.workflow.title },
+  { id: "experiencia", title: about.work.title },
+  { id: "formacao", title: about.studies.title },
+  { id: "competencias", title: about.technical.title },
+];
+
 export default function About() {
-  const structure = [
-    {
-      title: about.intro.title,
-      display: about.intro.display,
-      items: [],
-    },
-    {
-      title: about.workflow.title,
-      display: about.workflow.display,
-      items: [],
-    },
-    {
-      title: about.work.title,
-      display: about.work.display,
-      // Assuming company names are unique enough for this context (TOC)
-      items: about.work.experiences.map((experience) => experience.company),
-    },
-    {
-      title: about.studies.title,
-      display: about.studies.display,
-      // Assuming institution names are unique enough for this context (TOC)
-      items: about.studies.institutions.map((institution) => institution.name),
-    },
-    {
-      title: about.technical.title,
-      display: about.technical.display,
-      // Assuming skill titles are unique enough for this context (TOC)
-      items: about.technical.skills.map((skill) => skill.title),
-    },
-  ];
+  const companies = groupByCompany(about.work.experiences);
+
   return (
-    <Column maxWidth="m">
+    <div className={styles.page}>
       <script
         type="application/ld+json"
         suppressHydrationWarning
@@ -90,259 +56,127 @@ export default function About() {
             jobTitle: person.role,
             description: about.description,
             url: `https://${baseURL}/about`,
-            image: `${baseURL}/images/${person.avatar}`,
-            sameAs: social
-              .filter((item) => item.link && !item.link.startsWith("mailto:")) // Filter out empty links and email links
-              .map((item) => item.link), // No React key needed inside JSON.stringify
-            worksFor: {
-              "@type": "Organization",
-              name: about.work.experiences[0]?.company || "", // Added optional chaining
-            },
+            image: `https://${baseURL}${person.avatar}`,
+            sameAs: social.filter((item) => item.link && !item.link.startsWith("mailto:")).map((item) => item.link),
+            worksFor: { "@type": "Organization", name: about.work.experiences[0]?.company || "" },
           }),
         }}
       />
-      {about.tableOfContent.display && (
-        <Column
-          left="0"
-          style={{ top: "50%", transform: "translateY(-50%)" }}
-          position="fixed"
-          paddingLeft="24"
-          gap="32"
-          hide="s"
-        >
-          {/* Assuming TableOfContents handles its own keys internally if needed */}
-          <TableOfContents structure={structure} about={about} />
-        </Column>
-      )}
-      <RevealFx translateY="4" fillWidth>
-        <Flex fillWidth mobileDirection="column" horizontal="center">
-          {about.avatar.display && (
-            <Column
-              className={styles.avatar}
-              minWidth="160"
-              paddingX="l"
-              paddingBottom="xl"
-              gap="m"
-              flex={3}
-              horizontal="center"
-            >
-              <Avatar src={person.avatar} size="xl" aria-label={`Foto de ${person.name}`} />
-            <Flex gap="8" vertical="center" className={styles.responsiveNowrap}>
-              <Icon onBackground="accent-weak" name="globe" />
-              {/* Displaying fixed location as requested */}
-              Igaraçu do Tietê - SP
-            </Flex>
-            <Flex wrap gap="8" horizontal="center" fillWidth>
-              {person.languages.map((language) => (
-                  <Tag key={language} size="l">
-                    {language}
-                  </Tag>
-                ))}
-              {social.filter(item => item.name === "GitHub").map((item) =>
-                  item.link && (
-                    <Button
-                      key={item.name}
-                      href={item.link}
-                      prefixIcon={item.icon}
-                      label={item.name}
-                      size="s"
-                      variant="secondary"
-                      target="_blank"
-                    />
-                  )
-              )}
-            </Flex>
-          </Column>
-          )}
-        <Column className={styles.blockAlign} flex={9}>
-          <Column
-            id={about.intro.title} // ID used for navigation, not React key
-            fillWidth
-            minHeight="160"
-            vertical="center"
-            marginBottom="32"
-          >
 
-            <Heading className={`${styles.textAlign} ${styles.responsiveNowrap}`} variant="display-strong-xl">
-              {person.name}
-            </Heading>
-            <Text
-              className={styles.textAlign}
-              variant="display-default-xs"
-              onBackground="neutral-weak"
-            >
-              {person.role}
-            </Text>
+      <aside className={styles.profile} aria-label="Perfil">
+        <Image className={styles.avatar} src={person.avatar} alt={`Foto de ${person.name}`} width={128} height={128} priority />
+        <div style={{ display: "flex", flexDirection: "column", gap: 8 }}>
+          <h1 className={styles.name}>{person.name}</h1>
+          <p className={styles.role}>{person.role}</p>
+        </div>
+        <ul className={styles.facts}>
+          <li className={styles.label}>{home.location}</li>
+          <li className={styles.label}>{person.languages.join(" · ")}</li>
+          <li className={styles.label}>{home.availability}</li>
+        </ul>
+        <div className={styles.actions}>
+          <a className={classNames(styles.button, styles.buttonAccent)} href={person.cv} download>
+            <Download />
+            Baixar currículo
+          </a>
+          <div className={styles.actionRow}>
+            <a className={classNames(styles.button, styles.buttonGhost)} href={linkOf("LinkedIn")} target="_blank" rel="noreferrer">
+              LinkedIn
+            </a>
+            <a className={classNames(styles.button, styles.buttonGhost)} href={linkOf("GitHub")} target="_blank" rel="noreferrer">
+              GitHub
+            </a>
+          </div>
+        </div>
+        <nav className={styles.nav} aria-label="Seções da página">
+          {sections.map((section) => (
+            <a key={section.id} className={styles.navLink} href={`#${section.id}`}>
+              {`// ${section.title.toLowerCase()}`}
+            </a>
+          ))}
+        </nav>
+      </aside>
 
-          </Column>
+      <div className={styles.content}>
+        <section id="quem-sou" className={styles.section} aria-labelledby="quem-sou-title">
+          <span className={styles.eyebrow}>{"// quem sou"}</span>
+          <h2 id="quem-sou-title" className={styles.h2}>
+            Qualidade e desenvolvimento, dos dois lados do código
+          </h2>
+          <div className={styles.bio}>{about.intro.description}</div>
+        </section>
 
-          {about.intro.display && (
-            <Column fillWidth gap="m" marginBottom="xl">
-              <Text variant="body-default-l" onBackground="neutral-weak">
-                {about.intro.description}
-              </Text>
-            </Column>
-          )}
+        <section id="como-eu-trabalho" className={styles.section} aria-labelledby="como-eu-trabalho-title">
+          <h2 id="como-eu-trabalho-title" className={styles.h2}>
+            {about.workflow.title}
+          </h2>
+          <ol className={styles.steps}>
+            {about.workflow.steps.map((step, index) => (
+              <li key={step.title} className={styles.step}>
+                <span className={styles.eyebrow}>{String(index + 1).padStart(2, "0")}</span>
+                <span className={styles.stepTitle}>{step.title}</span>
+                <span className={styles.muted}>{step.description}</span>
+              </li>
+            ))}
+          </ol>
+        </section>
 
-          {about.workflow.display && (
-            <>
-              <Heading as="h2" id={about.workflow.title} variant="display-strong-s" marginBottom="m">
-                {about.workflow.title}
-              </Heading>
-              <Column as="ol" fillWidth gap="12" marginBottom="40" paddingLeft="0" style={{ listStyle: "none" }}>
-                {about.workflow.steps.map((step, index) => (
-                  <Flex as="li" key={step.title} gap="16" vertical="start">
-                    <Text variant="label-default-s" onBackground="brand-weak" style={{ minWidth: 28, paddingTop: 3 }}>
-                      {String(index + 1).padStart(2, "0")}
-                    </Text>
-                    <Text variant="body-default-m">
-                      <strong>{step.title}</strong> — {step.description}
-                    </Text>
-                  </Flex>
-                ))}
-              </Column>
-            </>
-          )}
-          {about.work.display && (
-            <>
-              <Heading as="h2" id={about.work.title} variant="display-strong-s" marginBottom="m">
-                {about.work.title}
-              </Heading>
-              <Column fillWidth gap="l" marginBottom="40">
-                {/* Using index as part of the key for experiences */}
-                {about.work.experiences.map((experience, index) => (
-                  <Column key={`${experience.company}-${index}`} fillWidth>
-                    <Flex fillWidth horizontal="space-between" vertical="end" marginBottom="4">
-                      <Text id={experience.id ?? experience.company} variant="heading-strong-l">
-                        {experience.company}
-                      </Text>
-                      <Text variant="heading-default-xs" onBackground="neutral-weak">
-                        {experience.timeframe}
-                      </Text>
-                    </Flex>
-                    <Text variant="body-default-s" onBackground="brand-weak" marginBottom="m">
-                      {experience.role}
-                    </Text>
-                    <Column as="ul" gap="16">
-                      {/* Using index for achievement keys as content might not be unique string */}
-                      {experience.achievements.map((achievement: React.JSX.Element, achIndex: number) => (
-                        <Text
-                          as="li"
-                          variant="body-default-m"
-                          key={`${experience.company}-ach-${achIndex}`}
-                        >
-                          {achievement}
-                        </Text>
-                      ))}
-                    </Column>
-                    {experience.images && experience.images.length > 0 && (
-                      <Flex fillWidth paddingTop="m" paddingLeft="40" wrap>
-                        {/* Using index for image keys, assuming order is stable */}
-                        {experience.images.map((image, imgIndex) => (
-                          <Flex
-                            key={`exp-${experience.company}-img-${imgIndex}`}
-                            border="neutral-medium"
-                            radius="m"
-                            //@ts-ignore - Keeping ts-ignore as original
-                            minWidth={image.width}
-                            //@ts-ignore
-                            height={image.height}
-                          >
-                            <SmartImage
-                              enlarge
-                              radius="m"
-                              //@ts-ignore
-                              sizes={image.width.toString()}
-                              //@ts-ignore
-                              alt={image.alt}
-                              //@ts-ignore
-                              src={image.src}
-                            />
-                          </Flex>
+        <section id="experiencia" className={styles.section} aria-labelledby="experiencia-title">
+          <h2 id="experiencia-title" className={styles.h2}>
+            {about.work.title}
+          </h2>
+          <ol className={styles.jobs}>
+            {companies.map((group) => (
+              <li key={`${group.company}-${group.roles[0].timeframe}`} className={styles.job}>
+                <h3 className={styles.company}>{group.company}</h3>
+                <ol className={styles.roles}>
+                  {group.roles.map((role) => (
+                    <li key={role.role} className={styles.roleItem}>
+                      <div className={styles.roleHeader}>
+                        <h4 className={styles.roleTitle}>{role.role}</h4>
+                        <span className={styles.label}>{role.period ?? role.timeframe}</span>
+                      </div>
+                      <ul className={styles.achievements}>
+                        {role.achievements.map((achievement, index) => (
+                          <li key={index}>{achievement}</li>
                         ))}
-                      </Flex>
-                    )}
-                  </Column>
-                ))}
-              </Column>
-            </>
-          )}
+                      </ul>
+                    </li>
+                  ))}
+                </ol>
+              </li>
+            ))}
+          </ol>
+        </section>
 
-          {about.studies.display && (
-            <>
-              <Heading as="h2" id={about.studies.title} variant="display-strong-s" marginBottom="m">
-                {about.studies.title}
-              </Heading>
-              <Column fillWidth gap="l" marginBottom="40">
-                {/* Using index for institution keys */}
-                {about.studies.institutions.map((institution, index) => (
-                  <Column key={`${institution.name}-${index}`} fillWidth gap="4">
-                    <Text id={institution.name} variant="heading-strong-l">
-                      {institution.name}
-                    </Text>
-                    <Text variant="heading-default-xs" onBackground="neutral-weak">
-                      {institution.description}
-                    </Text>
-                  </Column>
-                ))}
-              </Column>
-            </>
-          )}
+        <section id="formacao" className={styles.section} aria-labelledby="formacao-title">
+          <h2 id="formacao-title" className={styles.h2}>
+            {about.studies.title}
+          </h2>
+          <ul className={styles.grid}>
+            {about.studies.institutions.map((institution, index) => (
+              <li key={`${institution.name}-${index}`} className={styles.card}>
+                <h3 className={styles.cardTitle}>{institution.description}</h3>
+                <span className={styles.label}>{institution.name}</span>
+              </li>
+            ))}
+          </ul>
+        </section>
 
-          {about.technical.display && (
-            <>
-              <Heading
-                as="h2"
-                id={about.technical.title}
-                variant="display-strong-s"
-                marginBottom="40"
-              >
-                {about.technical.title}
-              </Heading>
-              <Column fillWidth gap="l">
-                {/* Using skill.title as key, assuming titles are unique */}
-                {about.technical.skills.map((skill) => (
-                  <Column key={skill.title} fillWidth gap="4">
-                    <Text variant="heading-strong-l">{skill.title}</Text>
-                    <Text variant="body-default-m" onBackground="neutral-weak">
-                      {skill.description}
-                    </Text>
-                    {skill.images && skill.images.length > 0 && (
-                      <Flex fillWidth paddingTop="m" gap="12" wrap>
-                        {/* Using index for skill image keys */}
-                        {skill.images.map((image, imgIndex) => (
-                          <Flex
-                            key={`skill-${skill.title}-img-${imgIndex}`}
-                            border="neutral-medium"
-                            radius="m"
-                            //@ts-ignore
-                            minWidth={image.width}
-                            //@ts-ignore
-                            height={image.height}
-                          >
-                            <SmartImage
-                              enlarge
-                              radius="m"
-                              //@ts-ignore
-                              sizes={image.width.toString()}
-                              //@ts-ignore
-                              alt={image.alt}
-                              //@ts-ignore
-                              src={image.src}
-                            />
-                          </Flex>
-                        ))}
-                      </Flex>
-                    )}
-                  </Column>
-                ))}
-              </Column>
-            </>
-          )}
-          </Column>
-        </Flex>
-      </RevealFx>
-    </Column>
+        <section id="competencias" className={styles.section} aria-labelledby="competencias-title">
+          <h2 id="competencias-title" className={styles.h2}>
+            {about.technical.title}
+          </h2>
+          <ul className={styles.grid}>
+            {about.technical.skills.map((skill) => (
+              <li key={skill.title} className={styles.card}>
+                <h3 className={styles.cardTitle}>{skill.title}</h3>
+                <span className={styles.muted}>{skill.description}</span>
+              </li>
+            ))}
+          </ul>
+        </section>
+      </div>
+    </div>
   );
 }
-
