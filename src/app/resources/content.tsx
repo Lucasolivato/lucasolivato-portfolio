@@ -6,7 +6,7 @@ const person = {
   get name() {
     return `${this.firstName} ${this.lastName}`;
   },
-  role: "QA Automation Engineer",
+  role: "QA Automation Engineer & Desenvolvedor de IA",
   avatar: "/images/avatar.jpg",
   location: "America/Sao_Paulo",
   languages: ["Português nativo", "Inglês técnico"],
@@ -24,9 +24,9 @@ const social = [
 
 const home = {
   label: "Início",
-  title: "Lucas Olivato — QA Automation Engineer",
+  title: "Lucas Olivato — QA Automation Engineer & Desenvolvedor de IA",
   description:
-    "Portfólio de Lucas Olivato, QA Automation Engineer com experiência em automação de testes, desenvolvimento de software, testes E2E, APIs e qualidade de produtos digitais.",
+    "Portfólio de Lucas Olivato, QA Automation Engineer e desenvolvedor de agentes de IA, com experiência em automação de testes, testes E2E e de API, LLMs e desenvolvimento de software.",
   availability: "Aberto a novas oportunidades",
   location: "Igaraçu do Tietê, SP",
   headline: "Transformo requisitos em",
@@ -70,8 +70,8 @@ const about = {
     title: "Quem sou",
     description: (
       <>
-        Sou <strong>QA Automation Engineer</strong> e hoje trabalho dos dois lados do código: escrevo os testes e também
-        construo o que eles validam.
+        Sou <strong>QA Automation Engineer e desenvolvedor de IA</strong>: trabalho dos dois lados do código, escrevendo os
+        testes e também construindo o que eles validam.
         <br />
         <br />
         Antes de TI, trabalhei com instalação de sistemas de energia solar e suporte técnico em eletrônica. Em 2023 entrei
@@ -80,9 +80,10 @@ const about = {
         destravar um teste de carga.
         <br />
         <br />
-        Entrei na <strong>NuageIT</strong> em 2025 como Analista de Qualidade de Software e, em 2026, migrei para a área de
-        desenvolvimento como <strong>Desenvolvedor de IA</strong>. Desde então, desenvolvi dois agentes de IA para clientes da
-        empresa, validados por centenas de testes automatizados. Em paralelo, desenvolvo produtos próprios, como o{" "}
+        Entrei na <strong>NuageIT</strong> em 2025 como Analista de Qualidade de Software. Ainda como QA, já trabalhava perto
+        das iniciativas de IA da empresa e, em junho de 2026, recebi o convite para migrar para o desenvolvimento. Desde
+        então, trabalho na criação de <strong>agentes de IA com LLMs</strong>: desenvolvi dois para clientes da empresa,
+        validados por centenas de testes automatizados. Em paralelo, desenvolvo produtos próprios, como o{" "}
         <strong>VORCQ</strong>, sistema que substituiu a planilha operacional de uma locadora e roda com quality gates a cada
         entrega.
         <br />
@@ -110,11 +111,11 @@ const about = {
       {
         company: "NuageIT",
         id: "NuageIT-desenvolvimento",
-        timeframe: "2026 - Atual",
-        period: "2026 — hoje",
-        role: "Desenvolvedor de IA",
+        timeframe: "Jun 2026 - Atual",
+        period: "jun. 2026 — hoje",
+        role: "Desenvolvedor · agentes de IA e LLMs",
         achievements: [
-          <>Migração da área de Qualidade para Desenvolvimento, levando para o código a mesma disciplina de testes automatizados e quality gates.</>,
+          <>Convidado a migrar da área de Qualidade para Desenvolvimento após atuar perto das iniciativas de IA da empresa. Levo para o código a mesma disciplina de testes automatizados e quality gates.</>,
           <>Agente conversacional pedagógico para um cliente do setor de educação: persona histórica com guardrails contra prompt injection, arquitetura serverless na AWS (Lambda, API Gateway WebSocket e Bedrock), autenticação JWT e perfis de acesso. 229/229 testes unitários, 90% de cobertura no backend e 38/38 asserções E2E no ambiente AWS.</>,
           <>Plataforma de analytics com assistente de IA para um cliente corporativo: respostas em linguagem natural fundamentadas apenas em dados reais do banco, via tool-calling e sem SQL arbitrário, com isolamento entre clientes validado por uma suíte adversarial. 1.643 testes aprovados.</>,
           <>Stack: Next.js, React, TypeScript, Python, PostgreSQL, Docker e AWS.</>,
@@ -124,8 +125,8 @@ const about = {
       {
         company: "NuageIT",
         id: "NuageIT-qualidade",
-        timeframe: "2025 - 2026",
-        period: "2025 — 2026",
+        timeframe: "2025 - Jun 2026",
+        period: "2025 — jun. 2026",
         role: "Analista de Qualidade de Software",
         achievements: [
           <>Implementação de estratégias de teste para aplicações web e APIs, utilizando Cypress, Playwright e Postman para automação de testes.</>,

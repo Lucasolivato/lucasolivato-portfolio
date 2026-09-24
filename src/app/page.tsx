@@ -66,7 +66,10 @@ export default function Home() {
                 {person.name}
               </p>
               <p className={styles.label} style={{ margin: "4px 0 0" }}>
-                {person.role} · {home.location}
+                {person.role}
+              </p>
+              <p className={styles.label} style={{ margin: "2px 0 0" }}>
+                {home.location}
               </p>
             </div>
           </div>

@@ -3,7 +3,7 @@
 [![CI](https://github.com/Lucasolivato/lucasolivato-portfolio/actions/workflows/ci.yml/badge.svg)](https://github.com/Lucasolivato/lucasolivato-portfolio/actions/workflows/ci.yml)
 [![Site](https://img.shields.io/badge/no%20ar-lucasolivato.com-34D399?labelColor=0C0E0F)](https://www.lucasolivato.com)
 
-Portfólio de **Lucas Santos Olivato**, QA Automation Engineer que escreve os testes e também constrói o que eles validam.
+Portfólio de **Lucas Santos Olivato**, QA Automation Engineer e desenvolvedor de IA — escreve os testes e também constrói o que eles validam.
 
 [![Home do portfólio](public/images/projects/portfolio-automation/home-2026.png)](https://www.lucasolivato.com)
 
