@@ -61,16 +61,33 @@ const home = {
 const about = {
   label: "Sobre",
   title: "Sobre mim",
-  description: `Conheça ${person.name}, ${person.role}, com foco em automação e qualidade de software.`,
+  description: `Conheça ${person.name}, ${person.role} que escreve os testes e também constrói o que eles validam.`,
   tableOfContent: { display: true, subItems: false },
   avatar: { display: true },
   calendar: { display: false, link: "" },
   intro: {
     display: true,
-    title: "Posicionamento profissional",
+    title: "Quem sou",
     description: (
       <>
-        Sou <strong>QA Automation Engineer</strong> com experiência em automação de testes, validação de APIs e colaboração próxima com desenvolvimento e produto. Minha trajetória reúne testes manuais e automatizados, documentação técnica e construção de aplicações web. Hoje, mantenho a qualidade de software como foco principal e uso o desenvolvimento como diferencial para compreender melhor riscos, regras de negócio e decisões técnicas.
+        Sou <strong>QA Automation Engineer</strong> e hoje trabalho dos dois lados do código: escrevo os testes e também
+        construo o que eles validam.
+        <br />
+        <br />
+        Antes de TI, trabalhei com instalação de sistemas de energia solar e suporte técnico em eletrônica. Em 2023 entrei
+        em qualidade de software na <strong>Tecnologia Única</strong>, automatizando testes de interface e API com Robot
+        Framework e Python e validando sistemas SAP. Foi lá que automatizei a criação de mais de 600 pedidos em 10 horas para
+        destravar um teste de carga.
+        <br />
+        <br />
+        Na <strong>NuageIT</strong>, desde 2025, atuo cada vez mais no desenvolvimento: construí e testei dois agentes de IA
+        para clientes, validados por centenas de testes automatizados. Em paralelo, desenvolvo produtos próprios, como o{" "}
+        <strong>VORCQ</strong>, sistema que substituiu a planilha operacional de uma locadora e roda com quality gates a cada
+        entrega.
+        <br />
+        <br />
+        Meu diferencial é levar o olhar de QA para dentro do desenvolvimento: pensar em risco, regra de negócio e regressão
+        desde a primeira linha.
       </>
     ),
   },

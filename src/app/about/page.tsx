@@ -88,7 +88,7 @@ export default function About() {
             "@type": "Person",
             name: person.name,
             jobTitle: person.role,
-            description: about.intro.description,
+            description: about.description,
             url: `https://${baseURL}/about`,
             image: `${baseURL}/images/${person.avatar}`,
             sameAs: social
